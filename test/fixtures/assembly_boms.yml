@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  assembly: one
+  part: one
+  count: 1
+  refdes: MyString
+
+two:
+  assembly: two
+  part: two
+  count: 1
+  refdes: MyString

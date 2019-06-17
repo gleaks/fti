@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  date: 2019-06-09
+  delivery: MyString
+  payment: MyString
+  warranty: MyString
+  category: one
+  customer: one
+
+two:
+  name: MyString
+  date: 2019-06-09
+  delivery: MyString
+  payment: MyString
+  warranty: MyString
+  category: two
+  customer: two

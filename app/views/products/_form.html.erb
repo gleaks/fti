@@ -1,0 +1,50 @@
+<%= form_with(model: product, local: true, class: 'form-horizontal') do |form| %>
+  <div class="card-body">
+    <% if product.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(product.errors.count, "error") %> prohibited this order from being saved:</h2>
+  
+        <ul>
+        <% product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  <div class="form-group row">
+    <%= form.label :name, class: 'col-md-3 col-form-label' %>
+    <div class="col-md-9">
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :price, class: 'col-md-3 col-form-label' %>
+    <div class="col-md-9">
+      <%= form.text_field :price, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :category_id, class: 'col-md-3 col-form-label' %>
+    <div class="col-md-9">
+      <%= form.collection_select :category_id, @categories, :id, :name, {}, {:class=>'form-control'} %>
+    </div>
+  </div>
+  
+  <h2>BOM</h2>
+    <div id="product_boms">
+      <%= form.fields_for :product_boms do |product_bom| %>
+        <%= render 'product_bom_fields', f: product_bom %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association 'Add assembly', form, :product_boms %>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
