@@ -25,6 +25,7 @@ gem 'cocoon'
 gem 'breadcrumbs_on_rails'
 gem 'toastr-rails'
 gem 'seed_dump'
+gem 'jquery-datatables-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

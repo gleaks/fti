@@ -79,9 +79,9 @@
                         <% @part.assembly_boms.each do |bom| %>
                           <li class="list-group-item">
                           <b><%= link_to assembly_path(bom.assembly.id) do %>
-                            <%= bom.assembly.name %> (<%= bom.assembly.id %>)</b>
+                            <%= bom.assembly.name %> - <%= bom.count %>x</b>
                           <% end %>
-                          <span class="float-right"><%= bom.count %>x (<%= bom.refdes %>)</span>
+                          <span class="float-right"><%= bom.refdes %></span>
                         </li>
                         <% end %>
                       </ul>

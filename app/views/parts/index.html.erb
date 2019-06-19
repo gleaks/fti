@@ -20,27 +20,31 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                        <table id="parts-table" class="table table-responsive-sm table-bordered table-striped table-sm">
                           <thead>
                             <tr>
+                              <th>FTI Part #</th>
                               <th>Description</th>
-                              <th>Mfg</th>
-                              <th>Mfg</th>
+                              <th>Manufacturer</th>
+                              <th>Manufacturer Part #</th>
                               <th>Category</th>
-                              <th colspan="3"></th>
+                              <th></th>
                             </tr>
                           </thead>
                         
                           <tbody>
                             <% @parts.each do |part| %>
                               <tr>
+                                <td>
+                                    <%= link_to part do %> 
+                                        <%= part.id %>
+                                    <% end %>
+                                </td>
                                 <td><%= part.description %></td>
                                 <td><%= part.mfg %></td>
                                 <td><%= part.mfg_id %></td>
                                 <td><%= part.category.name %></td>
-                                <td><%= link_to 'Show', part %></td>
-                                <td><%= link_to 'Edit', edit_part_path(part) %></td>
-                                <td><%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                <td><%= link_to 'Edit', edit_part_path(part) %> | <%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                               </tr>
                             <% end %>
                           </tbody>

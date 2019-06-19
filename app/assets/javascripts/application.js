@@ -18,4 +18,6 @@
 //= require bootstrap-sprockets
 //= require cocoon
 //= require toastr
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require_tree .

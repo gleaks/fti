@@ -68,10 +68,10 @@
                         <% @assembly.assembly_boms.each do |bom| %>
                           <li class="list-group-item">
                           <b><%= link_to part_path(bom.part.id) do %>
-                            <%= bom.part.mfg %> <%= bom.part.mfg_id %> (<%= bom.part.id %>)</b>
+                            <%= bom.part.id %> - <%= bom.part.mfg_id %>
                           <% end %>
-                          | <%= bom.refdes %>
-                          <span class="float-right"><%= bom.count %>x</span>
+                          (<%= bom.count %>x)</b>
+                          <span class="float-right"><%= bom.refdes %></span>
                         </li>
                         <% end %>
                       </ul>

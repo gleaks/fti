@@ -20,25 +20,27 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                        <table id="assemblies-table" class="table table-responsive-sm table-bordered table-striped table-sm">
                           <thead>
                             <tr>
                               <th>Name</th>
                               <th>Length</th>
                               <th>Category</th>
-                              <th colspan="3"></th>
+                              <th></th>
                             </tr>
                           </thead>
                         
                           <tbody>
                             <% @assemblies.each do |assembly| %>
                               <tr>
-                                <td><%= assembly.name %></td>
+                                <td>
+                                    <%= link_to assembly do %> 
+                                        <%= assembly.name %>
+                                    <% end %>
+                                </td>
                                 <td><%= assembly.length %></td>
                                 <td><%= assembly.category.name %></td>
-                                <td><%= link_to 'Show', assembly %></td>
-                                <td><%= link_to 'Edit', edit_assembly_path(assembly) %></td>
-                                <td><%= link_to 'Destroy', assembly, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                <td><%= link_to 'Edit', edit_assembly_path(assembly) %> | <%= link_to 'Destroy', assembly, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                               </tr>
                             <% end %>
                           </tbody>
