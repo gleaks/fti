@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_20_164732) do
+ActiveRecord::Schema.define(version: 2019_06_20_171314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,21 @@ ActiveRecord::Schema.define(version: 2019_06_20_164732) do
     t.text "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "modulelogs", force: :cascade do |t|
+    t.integer "serial"
+    t.string "version"
+    t.bigint "order_id"
+    t.date "date"
+    t.bigint "category_id"
+    t.bigint "assembly_id"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assembly_id"], name: "index_modulelogs_on_assembly_id"
+    t.index ["category_id"], name: "index_modulelogs_on_category_id"
+    t.index ["order_id"], name: "index_modulelogs_on_order_id"
   end
 
   create_table "order_boms", force: :cascade do |t|
@@ -118,4 +133,7 @@ ActiveRecord::Schema.define(version: 2019_06_20_164732) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "modulelogs", "assemblies"
+  add_foreign_key "modulelogs", "categories"
+  add_foreign_key "modulelogs", "orders"
 end

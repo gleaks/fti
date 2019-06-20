@@ -7,4 +7,6 @@ class Assembly < ApplicationRecord
   
   has_many :product_boms, dependent: :delete_all
   has_many :products, through: :product_boms
+  
+  has_many :modulelogs
 end

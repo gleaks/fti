@@ -6,6 +6,11 @@
                     <i class="nav-icon material-icons">dashboard</i> Dashboard
                 </a>
             </li>
+            <li class="nav-item">
+                <%= link_to(modulelogs_path, class: 'nav-link') do %>
+                    <i class="nav-icon material-icons">list</i> Module Log
+                <% end %>
+            </li>
             <li class="nav-title">CRM</li>
             <li class="nav-item">
                 <%= link_to(orders_path, class: 'nav-link') do %>

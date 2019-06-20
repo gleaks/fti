@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :modulelogs
   resources :locations
   get 'welcome/index'
   root 'welcome#index'

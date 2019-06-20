@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  serial: 1
+  version: MyString
+  order: one
+  date: 2019-06-20
+  category: one
+  assembly: one
+  notes: MyText
+
+two:
+  serial: 1
+  version: MyString
+  order: two
+  date: 2019-06-20
+  category: two
+  assembly: two
+  notes: MyText

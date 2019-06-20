@@ -1,0 +1,61 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/">Home</a>
+    </li>
+    <li class="breadcrumb-item">Module Log</li>
+</ol>
+
+<div class="container-fluid">
+    <div id="ui-view">
+        <div>
+            <p id="notice"><%= notice %></p>
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        Module Log
+                        <div class="card-header-actions">
+                          <%= link_to new_modulelog_path, class: 'card-header-action' do %>
+                            Create New Module
+                          <% end %>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table id="modulelogs-table" class="table table-responsive-sm table-bordered table-striped table-sm">
+                          <thead>
+                            <tr>
+                              <th>Module</th>
+                              <th>S/N</th>
+                              <th>Version</th>
+                              <th>Date</th>
+                              <th>Category</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                        
+                          <tbody>
+                            <% @modulelogs.each do |modulelog| %>
+                              <tr>
+                                <td>
+                                    <%= link_to modulelog do %> 
+                                        <%= modulelog.assembly.name %>
+                                    <% end %>
+                                </td>
+                                <td><%= modulelog.serial %></td>
+                                <td><%= modulelog.version %></td>
+                                <td><%= modulelog.date %></td>
+                                <td><%= modulelog.category.name %></td>
+                                <td><%= link_to 'Edit', edit_modulelog_path(modulelog) %> | <%= link_to 'Destroy', modulelog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+
