@@ -1,5 +1,6 @@
 class PartsController < ApplicationController
   before_action :set_part, only: [:show, :edit, :update, :destroy]
+  before_action :require_login
 
   # GET /parts
   def index

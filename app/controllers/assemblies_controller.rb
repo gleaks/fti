@@ -1,5 +1,6 @@
 class AssembliesController < ApplicationController
   before_action :set_assembly, only: [:show, :edit, :update, :destroy]
+  before_action :require_login
 
   # GET /assemblies
   def index
