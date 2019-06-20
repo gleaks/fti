@@ -1,6 +1,22 @@
-<h1>Editing Modulelog</h1>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/">Home</a>
+    </li>
+    <li class="breadcrumb-item"><%= link_to 'Module Log', modulelogs_path %></li>
+    <li class="breadcrumb-item">Edit <%= @modulelog.assembly.name %> <%= @modulelog.serial %></li>
+</ol>
 
-<%= render 'form', modulelog: @modulelog %>
-
-<%= link_to 'Show', @modulelog %> |
-<%= link_to 'Back', modulelogs_path %>
+<div class="container-fluid">
+    <div id="ui-view">
+        <div>
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        Edit Module
+                    </div>
+                    <%= render 'form', modulelog: @modulelog %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

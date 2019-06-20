@@ -1,5 +1,22 @@
-<h1>New Modulelog</h1>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/">Home</a>
+    </li>
+    <li class="breadcrumb-item"><%= link_to 'Module Log', modulelogs_path %></li>
+    <li class="breadcrumb-item">New Module</li>
+</ol>
 
-<%= render 'form', modulelog: @modulelog %>
-
-<%= link_to 'Back', modulelogs_path %>
+<div class="container-fluid">
+    <div id="ui-view">
+        <div>
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        New Module
+                    </div>
+                    <%= render 'form', modulelog: @modulelog %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

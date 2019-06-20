@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   resources :assemblies
   resources :parts
   resources :categories
+  
+  resources :materials, only: [:index]
 end

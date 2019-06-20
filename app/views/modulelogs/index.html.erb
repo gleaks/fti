@@ -23,8 +23,8 @@
                         <table id="modulelogs-table" class="table table-responsive-sm table-bordered table-striped table-sm">
                           <thead>
                             <tr>
-                              <th>Module</th>
                               <th>S/N</th>
+                              <th>Module</th>
                               <th>Version</th>
                               <th>Date</th>
                               <th>Category</th>
@@ -37,10 +37,10 @@
                               <tr>
                                 <td>
                                     <%= link_to modulelog do %> 
-                                        <%= modulelog.assembly.name %>
+                                        <%= modulelog.serial %>
                                     <% end %>
                                 </td>
-                                <td><%= modulelog.serial %></td>
+                                <td><%= modulelog.assembly.name %></td>
                                 <td><%= modulelog.version %></td>
                                 <td><%= modulelog.date %></td>
                                 <td><%= modulelog.category.name %></td>
