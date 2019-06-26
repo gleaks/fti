@@ -14,7 +14,25 @@
                         Material Status
                     </div>
                     <div class="card-body">
-                        <h1>A Material Status Report</h1>
+                        <table id="material-table" class="table table-responsive-sm table-bordered table-striped table-sm">
+                           <thead>
+                            <tr>
+                                <% @modules.each do |m| %>
+                                    <th><%= m %>
+                                <% end %>
+                            </tr>
+                          </thead>
+                        
+                          <tbody>
+                            <% @orders.each do |order| %>
+                              <tr>
+                                <% order.each do |o| %>
+                                    <td><%= o %></td>
+                                <% end %>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
