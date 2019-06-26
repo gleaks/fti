@@ -14,7 +14,7 @@
                         Material Status
                     </div>
                     <div class="card-body">
-                        <table id="material-table" class="table table-responsive-sm table-bordered table-striped table-sm">
+                        <table id="material-table" class="table table-responsive-sm table-bordered table-sm">
                            <thead>
                             <tr>
                                 <% @modules.each do |m| %>
@@ -31,6 +31,12 @@
                                 <% end %>
                               </tr>
                             <% end %>
+                            <tr>
+                                <td>Tested</td>
+                                <% @tested.each do |t| %>
+                                    <td><%= t %></td>
+                                <% end %>
+                            </tr>
                           </tbody>
                         </table>
                     </div>

@@ -32,5 +32,17 @@ class MaterialsController < ApplicationController
             thisorder += [dc9, hp6, hp200a, hv8, nan7, nanb, dvsd, scm, soa]
             @orders << thisorder
         end
+        
+        tested_dc9 = Modulelog.where(category_id: 49, assembly_id: 21).count
+        tested_hp6 = Modulelog.where(category_id: 49, assembly_id: 30).count
+        tested_hp200a = 0
+        tested_hv8 = Modulelog.where(category_id: 49, assembly_id: 32).count
+        tested_nan7 = Modulelog.where(category_id: 49, assembly_id: 43).count
+        tested_nanb = 0
+        tested_dvsd = Modulelog.where(category_id: 49, assembly_id: 26).count
+        tested_scm = Modulelog.where(category_id: 49, assembly_id: 55).count
+        tested_soa = Modulelog.where(category_id: 49, assembly_id: 56).count
+        
+        @tested = [tested_dc9, tested_hp6, tested_hp200a, tested_hv8, tested_nan7, tested_nanb, tested_dvsd, tested_scm, tested_soa]
     end
 end
