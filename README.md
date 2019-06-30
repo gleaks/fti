@@ -1,24 +1,5 @@
-# README
+SEED DUMP ORDER
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+rails db:seed:dump MODELS="Category,Customer,Location" EXCLUDE="" APPEND=true
+rails db:seed:dump MODELS="Part,Assembly,Product,User,Order" EXCLUDE="" APPEND=true
+rails db:seed:dump MODELS="AssemblyBom,Modulelog,OrderBom,ProductBom" EXCLUDE="" APPEND=true

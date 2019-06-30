@@ -237,6 +237,7 @@ DEPENDENCIES
   pg
   puma (~> 3.11)
   rails (~> 5.2.3)
+  rake
   sass-rails (~> 5.0)
   seed_dump
   selenium-webdriver

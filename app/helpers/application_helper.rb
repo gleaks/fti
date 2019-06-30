@@ -13,4 +13,12 @@ module ApplicationHelper
     def multiply(a, b)
         return a*b
     end
+    
+    def zeroifnil(a)
+        if a.nil?
+            return 0
+        else
+            return a
+        end
+    end
 end
