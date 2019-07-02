@@ -1,0 +1,22 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/">Home</a>
+    </li>
+    <li class="breadcrumb-item"><%= link_to 'Orders', orders_path %></li>
+    <li class="breadcrumb-item">Edit Order #<%= @order.id %></li>
+</ol>
+
+<div class="container-fluid">
+    <div id="ui-view">
+        <div>
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        Edit Order
+                    </div>
+                    <%= render 'form', order: @order %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

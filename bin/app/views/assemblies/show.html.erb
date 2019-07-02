@@ -1,0 +1,85 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/">Home</a>
+    </li>
+    <li class="breadcrumb-item"><%= link_to 'Assemblies', assemblies_path %></li>
+    <li class="breadcrumb-item">Assembly #<%= @assembly.id %></li>
+</ol>
+
+<div class="container-fluid">
+    <div id="ui-view">
+        <div>
+          <p id="notice"><%= notice %></p>
+          <div class="animated fadeIn">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        Assembly Information
+                        <div class="card-header-actions">
+                          <%= link_to 'Edit Assembly', edit_assembly_path(@assembly), class: 'card-header-action' %>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <ul class="list-group">
+                        <li class="list-group-item">
+                          <b>FTI Part #</b> <span class="float-right"><%= @assembly.id %></span>
+                        </li>
+                        <li class="list-group-item">
+                          <b>Description</b> <span class="float-right"><%= @assembly.name %></span>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-xl-6">
+                <div class="card">
+                    <div class="card-header">
+                        BOM - Goes Into These Products
+                        <div class="card-header-actions">
+                          <%= link_to 'Edit BOM', edit_assembly_path(@assembly), class: 'card-header-action' %>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <ul class="list-group">
+                        <% @assembly.product_boms.each do |bom| %>
+                          <li class="list-group-item">
+                          <b><%= link_to product_path(bom.product.id) do %>
+                            <%= bom.product.name %> (<%= bom.product.id %>)</b>
+                          <% end %>
+                          <span class="float-right"><%= bom.count %>x</span>
+                        </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-xl-6">
+                <div class="card">
+                    <div class="card-header">
+                        BOM - Needs These Parts
+                        <div class="card-header-actions">
+                          <%= link_to 'Edit BOM', edit_assembly_path(@assembly), class: 'card-header-action' %>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <ul class="list-group">
+                        <% @assembly.assembly_boms.each do |bom| %>
+                          <li class="list-group-item">
+                          <b><%= link_to part_path(bom.part.id) do %>
+                            <%= bom.part.id %> - <%= bom.part.mfg_id %>
+                          <% end %>
+                          (<%= bom.count %>x)</b>
+                          <span class="float-right"><%= bom.refdes %></span>
+                        </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

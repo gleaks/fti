@@ -1,0 +1,57 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/">Home</a>
+    </li>
+    <li class="breadcrumb-item">Parts</li>
+</ol>
+
+<div class="container-fluid">
+    <div id="ui-view">
+        <div>
+            <p id="notice"><%= notice %></p>
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        Part List
+                        <div class="card-header-actions">
+                          <%= link_to new_part_path, class: 'card-header-action' do %>
+                            Create New Part
+                          <% end %>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table id="parts-table" class="table table-responsive-sm table-bordered table-striped table-sm">
+                          <thead>
+                            <tr>
+                              <th>FTI Part #</th>
+                              <th>Description</th>
+                              <th>Manufacturer</th>
+                              <th>Manufacturer Part #</th>
+                              <th>Category</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                        
+                          <tbody>
+                            <% @parts.each do |part| %>
+                              <tr>
+                                <td>
+                                    <%= link_to part do %> 
+                                        <%= part.id %>
+                                    <% end %>
+                                </td>
+                                <td><%= part.description %></td>
+                                <td><%= part.mfg %></td>
+                                <td><%= part.mfg_id %></td>
+                                <td><%= part.category.name %></td>
+                                <td><%= link_to 'Edit', edit_part_path(part) %> | <%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

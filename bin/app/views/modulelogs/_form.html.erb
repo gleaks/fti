@@ -1,0 +1,67 @@
+<%= form_with(model: modulelog, local: true, class: 'form-horizontal') do |form| %>  
+  <div class="card-body">
+    <% if modulelog.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(modulelog.errors.count, "error") %> prohibited this modulelog from being saved:</h2>
+  
+        <ul>
+        <% modulelog.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="form-group row">
+      <%= form.label :assembly_id, class: 'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= form.collection_select :assembly_id, @assemblies, :id, :name, {}, {:class=>'form-control'} %>
+      </div>
+    </div>
+  
+    <div class="form-group row">
+      <%= form.label :serial, class: 'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= form.text_field :serial, class: 'form-control' %>
+      </div>
+    </div>
+  
+    <div class="form-group row">
+      <%= form.label :version, class: 'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= form.text_field :version, class: 'form-control' %>
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <%= form.label :date, class: 'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= form.date_select :date, {}, { :class=>'form-control' } %>
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <%= form.label :order_id, class: 'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= form.collection_select :order_id, @orders, :id, :name, {}, {:class=>'form-control'} %>
+      </div>
+    </div>
+  
+    <div class="form-group row">
+      <%= form.label :category_id, class: 'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= form.collection_select :category_id, @categories, :id, :name, {}, {:class=>'form-control'} %>
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <%= form.label :notes, class: 'col-md-3 col-form-label' %>
+      <div class="col-md-9">
+        <%= form.text_field :notes, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

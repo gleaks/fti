@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Serial:</strong>
+  <%= @modulelog.serial %>
+</p>
+
+<p>
+  <strong>Version:</strong>
+  <%= @modulelog.version %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @modulelog.order %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @modulelog.date %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @modulelog.category %>
+</p>
+
+<p>
+  <strong>Assembly:</strong>
+  <%= @modulelog.assembly %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @modulelog.notes %>
+</p>
+
+<%= link_to 'Edit', edit_modulelog_path(@modulelog) %> |
+<%= link_to 'Back', modulelogs_path %>

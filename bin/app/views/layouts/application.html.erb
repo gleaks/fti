@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Fti</title>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+         rel="stylesheet">
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+   </head>
+   
+   <% if current_user %>
+       <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+          <%= render 'layouts/header' %>
+          <div class="app-body">
+             <%= render 'layouts/navigation' %>
+             <main class="main">
+                <%= yield %>
+             </main>
+          </div>
+          <%= custom_bootstrap_flash %>
+       </body>
+  <% else %>
+       <body class="app flex-row align-items-center">
+          <%= yield %>
+          <%= custom_bootstrap_flash %>
+       </body>
+   <% end %>
+</html>

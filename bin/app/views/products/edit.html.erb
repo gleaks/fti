@@ -1,0 +1,22 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/">Home</a>
+    </li>
+    <li class="breadcrumb-item"><%= link_to 'Products', products_path %></li>
+    <li class="breadcrumb-item">Edit Product #<%= @product.id %></li>
+</ol>
+
+<div class="container-fluid">
+    <div id="ui-view">
+        <div>
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        Edit Product
+                    </div>
+                    <%= render 'form', product: @product %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/">Home</a>
+    </li>
+    <li class="breadcrumb-item">Assemblies</li>
+</ol>
+
+<div class="container-fluid">
+    <div id="ui-view">
+        <div>
+            <p id="notice"><%= notice %></p>
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        Assembly List
+                        <div class="card-header-actions">
+                          <%= link_to new_assembly_path, class: 'card-header-action' do %>
+                            Create New Assembly
+                          <% end %>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table id="assemblies-table" class="table table-responsive-sm table-bordered table-striped table-sm">
+                          <thead>
+                            <tr>
+                              <th>Name</th>
+                              <th>Short Name</th>
+                              <th>Spin</th>
+                              <th>Length</th>
+                              <th>Category</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                        
+                          <tbody>
+                            <% @assemblies.each do |assembly| %>
+                              <tr>
+                                <td>
+                                    <%= link_to assembly do %> 
+                                        <%= assembly.name %>
+                                    <% end %>
+                                </td>
+                                <td><%= assembly.shortname %></td>
+                                <td><%= assembly.spin %></td>
+                                <td><%= assembly.length %></td>
+                                <td><%= assembly.category.name %></td>
+                                <td><%= link_to 'Edit', edit_assembly_path(assembly) %> | <%= link_to 'Destroy', assembly, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                              </tr>
+                            <% end %>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

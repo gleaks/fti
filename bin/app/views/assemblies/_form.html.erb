@@ -1,0 +1,85 @@
+<%= form_with(model: assembly, local: true, class: 'form-horizontal') do |form| %>
+  <div class="card-body">
+    <% if assembly.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(assembly.errors.count, "error") %> prohibited this order from being saved:</h2>
+  
+        <ul>
+        <% assembly.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  <div class="form-group row">
+    <%= form.label :name, class: 'col-md-3 col-form-label' %>
+    <div class="col-md-9">
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <%= form.label :shortname, class: 'col-md-3 col-form-label' %>
+    <div class="col-md-9">
+      <%= form.text_field :shortname, class: 'form-control' %>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <%= form.label :spin, class: 'col-md-3 col-form-label' %>
+    <div class="col-md-9">
+      <%= form.text_field :spin, class: 'form-control' %>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <%= form.label :active, class: 'col-md-3 col-form-label' %>
+    <div class="col-md-9">
+      <%= form.select :active, [['Yes', true], ['No', false]], {}, {:class=>'form-control'} %>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <%= form.label :current, class: 'col-md-3 col-form-label' %>
+    <div class="col-md-9">
+      <%= form.select :current, [['Yes', true], ['No', false]], {}, {:class=>'form-control'} %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :order, class: 'col-md-3 col-form-label' %>
+    <div class="col-md-9">
+      <%= form.number_field :order, class: 'form-control' %>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <%= form.label :length, class: 'col-md-3 col-form-label' %>
+    <div class="col-md-9">
+      <%= form.text_field :length, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :category_id, class: 'col-md-3 col-form-label' %>
+    <div class="col-md-9">
+      <%= form.collection_select :category_id, @categories, :id, :name, {}, {:class=>'form-control'} %>
+    </div>
+  </div>
+  
+  <h2>BOM</h2>
+    <div id="assembly_boms">
+      <%= form.fields_for :assembly_boms do |assembly_bom| %>
+        <%= render 'assembly_bom_fields', f: assembly_bom %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association 'Add part', form, :assembly_boms %>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
+

@@ -1,0 +1,2 @@
+module ModulelogsHelper
+end
