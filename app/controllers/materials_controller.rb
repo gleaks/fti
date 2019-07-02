@@ -2,9 +2,9 @@ class MaterialsController < ApplicationController
     def index
     
         # Fetch every order from the database
-        orders = Order.all
+        orders = Order.all.order(date: :desc)
         # Fetch all active assemblies
-        @headers = Assembly.where(active: true)
+        @headers = Assembly.where(active: true).order(order: :asc)
         
         # Start an empty array of all of the orders that will be filled when we are done with iterating over each order
         @orders = []
@@ -32,10 +32,10 @@ class MaterialsController < ApplicationController
         @modules = {}
         
         # Query all the modulelogs categories
-        @categories = Category.where(table: 'modulelogs').order(id: :asc)
+        @categories = Category.where(table: 'modulelogs').order(order: :asc)
         @categories.each do |category|
             # Iterate over every category and create a hash for it
-            @modules[category.id] = {'name' => category.name}
+            @modules[category.id] = {'name' => category.name, 'visible' => category.visible, 'color' => category.color}
         end
         
         modules.each do |m|

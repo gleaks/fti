@@ -59,6 +59,6 @@ class AssembliesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def assembly_params
-      params.require(:assembly).permit(:name, :length, :shortname, :active, :spin, :category_id, assembly_boms_attributes: [:id, :part_id, :count, :refdes, :_destroy])
+      params.require(:assembly).permit(:name, :length, :shortname, :active, :current, :order, :spin, :category_id, assembly_boms_attributes: [:id, :part_id, :count, :refdes, :_destroy])
     end
 end

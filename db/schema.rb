@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_29_215847) do
+ActiveRecord::Schema.define(version: 2019_07_01_162806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2019_06_29_215847) do
     t.string "spin"
     t.string "shortname"
     t.boolean "active"
+    t.boolean "current"
+    t.integer "order"
     t.index ["category_id"], name: "index_assemblies_on_category_id"
   end
 
@@ -43,6 +45,9 @@ ActiveRecord::Schema.define(version: 2019_06_29_215847) do
     t.string "table"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order"
+    t.boolean "visible"
+    t.string "color"
   end
 
   create_table "customers", force: :cascade do |t|

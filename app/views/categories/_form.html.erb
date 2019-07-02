@@ -20,6 +20,21 @@
     <%= form.label :table %>
     <%= form.text_field :table %>
   </div>
+  
+  <div class="field">
+    <%= form.label :order %>
+    <%= form.number_field :order %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :visible %>
+    <%= form.select :visible, [['Yes', true], ['No', false]] %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :color %>
+    <%= form.text_field :color %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

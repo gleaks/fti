@@ -21,4 +21,12 @@ module ApplicationHelper
             return a
         end
     end
+    
+    def checkhidden(a)
+        if a == false
+            return 'visibility:collapse;'
+        else
+            return ''
+        end
+    end
 end

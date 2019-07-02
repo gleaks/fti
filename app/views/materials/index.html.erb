@@ -19,7 +19,7 @@
                             <tr>
                                 <th></th>
                                 <% @headers.each do |header| %>
-                                    <th><%= header.shortname %>
+                                    <th class="<%= checkhidden(header.current) %>"><%= header.shortname %></th>
                                 <% end %>
                             </tr>
                           </thead>
@@ -34,7 +34,7 @@
                               </tr>
                             <% end %>
                             <% @modules.each do |m| %>
-                              <tr>
+                              <tr style="<%= checkhidden(m[1]['visible']) %> background-color: <%= m[1]['color'] %>">
                                 <td><%= m[1]['name'] %></td>
                                 <% @headers.each do |header| %>
                                     <td><%= zeroifnil(m[1][header.id]) %></td>
