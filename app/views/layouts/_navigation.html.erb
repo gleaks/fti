@@ -1,60 +1,65 @@
 <div class="sidebar">
-    <nav class="sidebar-nav">
-        <ul class="nav">
-            <li class="nav-item">
-                <a href="/" class="nav-link">
-                    <i class="nav-icon material-icons">dashboard</i> Dashboard
-                </a>
-            </li>
-            <li class="nav-title">CRM</li>
-            <li class="nav-item">
-                <%= link_to(orders_path, class: 'nav-link') do %>
-                    <i class="nav-icon material-icons">assignment</i> Orders
-                <% end %>
-            </li>
-            <li class="nav-item">
-                <%= link_to(customers_path, class: 'nav-link') do %>
-                    <i class="nav-icon material-icons">people</i> Customers
-                <% end %>
-            </li>
-            <li class="nav-title">Inventory</li>
-            <li class="nav-item">
-                <%= link_to(modulelogs_path, class: 'nav-link') do %>
-                    <i class="nav-icon material-icons">list</i> Module Log
-                <% end %>
-            </li>
-            <li class="nav-item">
-                <%= link_to(parts_path, class: 'nav-link') do %>
-                    <i class="nav-icon material-icons">memory</i> Parts
-                <% end %>
-            </li>
-            <li class="nav-item">
-                <%= link_to(assemblies_path, class: 'nav-link') do %>
-                    <i class="nav-icon material-icons">developer_board</i> Assemblies
-                <% end %>
-            </li>
-            <li class="nav-item">
-                <%= link_to(products_path, class: 'nav-link') do %>
-                    <i class="nav-icon material-icons">devices_other</i> Products
-                <% end %>
-            </li>
-            <li class="nav-title">Reports</li>
-            <li class="nav-item">
-                <%= link_to(materials_path, class: 'nav-link') do %>
-                    <i class="nav-icon material-icons">assessment</i> Material Status
-                <% end %>
-            </li>
-            <li class="nav-title">Settings</li>
-            <li class="nav-item">
-                <%= link_to(locations_path, class: 'nav-link') do %>
-                    <i class="nav-icon material-icons">business</i> Locations
-                <% end %>
-            </li>
-            <li class="nav-item">
-                <%= link_to(categories_path, class: 'nav-link') do %>
-                    <i class="nav-icon material-icons">bookmarks</i> Categories
-                <% end %>
-            </li>
-        </ul>
-    </nav>
+  <nav class="sidebar-nav">
+    <ul class="nav">
+      <li class="nav-item">
+        <a href="/" class="nav-link">
+          <i class="nav-icon material-icons">dashboard</i> Dashboard
+        </a>
+      </li>
+      <li class="nav-title">CRM</li>
+      <li class="nav-item">
+        <%= link_to(orders_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">assignment</i> Orders
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to(customers_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">people</i> Customers
+        <% end %>
+      </li>
+      <li class="nav-title">Inventory</li>
+      <li class="nav-item">
+        <%= link_to(modulelogs_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">list</i> Module Log
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to(modulelogs_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">list</i> System Log
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to(parts_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">memory</i> Parts
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to(assemblies_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">developer_board</i> Assemblies
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to(products_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">devices_other</i> Products
+        <% end %>
+      </li>
+      <li class="nav-title">Reports</li>
+      <li class="nav-item">
+        <%= link_to(materials_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">assessment</i> Material Status
+        <% end %>
+      </li>
+      <li class="nav-title">Settings</li>
+      <li class="nav-item">
+        <%= link_to(locations_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">business</i> Locations
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to(categories_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">bookmarks</i> Categories
+        <% end %>
+      </li>
+    </ul>
+  </nav>
 </div>

@@ -1,51 +1,79 @@
 <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <a href="/">Home</a>
-    </li>
-    <li class="breadcrumb-item">Material Status</li>
+  <li class="breadcrumb-item">
+    <a href="/">Home</a>
+  </li>
+  <li class="breadcrumb-item">Material Status</li>
 </ol>
-
 <div class="container-fluid">
-    <div id="ui-view">
-        <div>
-            <div class="animated fadeIn">
-                <div class="card">
-                    <div class="card-header">
-                        Material Status
-                    </div>
-                    <div class="card-body">
-                        <table id="material-table" class="table table-responsive-sm table-bordered table-sm">
-                           <thead>
-                            <tr>
-                                <th></th>
-                                <% @headers.each do |header| %>
-                                    <th class="<%= checkhidden(header.current) %>"><%= header.shortname %></th>
-                                <% end %>
-                            </tr>
-                          </thead>
-                        
-                          <tbody>
-                            <% @orders.each do |order| %>
-                              <tr>
-                                <td><%= order['name'] %></td>
-                                <% @headers.each do |header| %>
-                                    <td><%= zeroifnil(order['assemblies'][header.id]) %></td>
-                                <% end %>
-                              </tr>
-                            <% end %>
-                            <% @modules.each do |m| %>
-                              <tr style="<%= checkhidden(m[1]['visible']) %> background-color: <%= m[1]['color'] %>">
-                                <td><%= m[1]['name'] %></td>
-                                <% @headers.each do |header| %>
-                                    <td><%= zeroifnil(m[1][header.id]) %></td>
-                                <% end %>
-                              </tr>
-                            <% end %>
-                          </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+  <div id="ui-view">
+    <div>
+      <div class="animated fadeIn">
+        <div class="card">
+          <div class="card-header">
+            Material Status
+          </div>
+          <div class="card-body">
+            <table id="material-table" class="table table-responsive-sm table-bordered table-sm">
+              <thead>
+                <tr>
+                  <th></th>
+                  <% @headers.each do |header| %>
+                    <th class="<%= checkhidden(header.current, 'class') %>"><%= header.shortname %></th>
+                  <% end %>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr id="confirmed-orders" style="background-color: rgba(125, 255, 0, 0.50);">
+                  <td colspan="100"><b>Confirmed Orders</b></td>
+                </tr> -->
+                <% @orders.each do |order| %>
+                  <tr class="confirmed-orders">
+                    <td><%= order['name'] %></td>
+                    <% @headers.each do |header| %>
+                      <td><%= zeroifnil(order['assemblies'][header.id]) %></td>
+                    <% end %>
+                  </tr>
+                <% end %>
+                <tr id="confirmed-orders" style="background-color: rgba(125, 255, 0, 0.15);">
+                  <td>Customer Requirement</td>
+                  <% @headers.each do |header| %>
+                    <td>0</td>
+                  <% end %>
+                </tr>
+                <!-- <tr style="background-color: rgba(0, 58, 255, 0.5);">
+                  <td colspan="100"><b>Inventory</b></td>
+                </tr> -->
+                <% @modules.each do |m| %>
+                  <tr class="inventory <%= checkhidden(m[1]['visible'], 'class') %>" style="<%= checkhidden(m[1]['visible'], 'style') %>; background-color: <%= m[1]['color'] %>">
+                    <td><%= m[1]['name'] %></td>
+                    <% @headers.each do |header| %>
+                      <td><%= zeroifnil(m[1][header.id]) %></td>
+                    <% end %>
+                  </tr>
+                <% end %>
+                <tr id="inventory-balance" style="background-color: rgba(92, 104, 115, 0.5);">
+                  <td><b>Inventory Count</b></td>
+                  <% @headers.each do |header| %>
+                    <td>0</td>
+                  <% end %>
+                </tr>
+                <tr id="material-balance" style="background-color: rgba(92, 104, 115, 0.5);">
+                  <td><b>Material Balance</b></td>
+                  <% @headers.each do |header| %>
+                    <td class="conditional">0</td>
+                  <% end %>
+                </tr>
+                <tr style="background-color: rgba(92, 104, 115, 0.5);">
+                  <td><b>Min. Order Quantity</b></td>
+                  <% @headers.each do |header| %>
+                    <td>0</td>
+                  <% end %>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

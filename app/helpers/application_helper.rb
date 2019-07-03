@@ -9,11 +9,11 @@ module ApplicationHelper
       end
       flash_messages.join("\n").html_safe
     end
-    
+
     def multiply(a, b)
         return a*b
     end
-    
+
     def zeroifnil(a)
         if a.nil?
             return 0
@@ -21,12 +21,20 @@ module ApplicationHelper
             return a
         end
     end
-    
-    def checkhidden(a)
-        if a == false
-            return 'visibility:collapse;'
+
+    def checkhidden(a, b)
+        if b == 'style'
+          if a == false
+              return 'visibility:collapse'
+          else
+              return ''
+          end
         else
-            return ''
+          if a == true
+            return 'visible'
+          else
+            return 'hidden'
+          end
         end
     end
 end
