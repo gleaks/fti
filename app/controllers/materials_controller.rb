@@ -3,16 +3,17 @@
 class MaterialsController < ApplicationController
   def index
     # Fetch every order from the database
-    orders = Order.all.order(date: :desc)
+    orders = Order.all.order(category_id: :asc, date: :desc)
     # Fetch all active assemblies
     @headers = Assembly.where(active: true).order(order: :asc)
+    @count = Assembly.group(:order).count
 
     # Start an empty array of all of the orders that will be filled when we are done with iterating over each order
     @orders = []
     # Iterate over each order to extract information from it and reformat into an array for the view table
     orders.each do |order|
       # Begin an array for the order with the name of the order as the first item
-      thisorder = { 'name' => order.name, 'assemblies' => {} }
+      thisorder = { 'category' => order.category.name, 'name' => order.name, 'assemblies' => {} }
       # Iterate over each product added to an order
       order.order_boms.each do |order_bom|
         # Each product contains assemblies. Iterate over each assembly

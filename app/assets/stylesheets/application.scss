@@ -1,10 +1,10 @@
 @import "bootstrap";
 @import "toastr";
 @import "dataTables/bootstrap/3/jquery.dataTables.bootstrap";
-$color_1: rgba(0, 0, 0, 0.54);
-$color_2: rgba(0, 0, 0, 0.26);
-$color_3: rgba(255, 255, 255, 1);
-$color_4: rgba(255, 255, 255, 0.3);
+$color-1: rgba(0, 0, 0, .54);
+$color-2: rgba(0, 0, 0, .26);
+$color-3: rgba(255, 255, 255, 1);
+$color-4: rgba(255, 255, 255, 0.3);
 
 .material-icons.md-18 {
 	font-size: 18px;
@@ -38,6 +38,6 @@ $color_4: rgba(255, 255, 255, 0.3);
 	color: $color_4;
 }
 
-.conditional.red {
+.red {
 	background-color: rgb(220, 53, 69);
 }

@@ -16,36 +16,39 @@
             <table id="material-table" class="table table-responsive-sm table-bordered table-sm">
               <thead>
                 <tr>
-                  <th></th>
+                  <th class="nosearch"></th>
+                  <th class="hidden search">Category</th>
                   <% @headers.each do |header| %>
-                    <th class="<%= checkhidden(header.current, 'class') %>"><%= header.shortname %></th>
+                    <th class="<%= checkhidden(header.current, 'class') %> <%= header.order %> nosearch">
+                      <%= header.shortname %>
+                      <% if @count[header.order] > 1 && header.current%>
+                        <a href="#" class="toggle-vis" data-column="<%= header.order %>">+</a>
+                      <% end %>
+                    </th>
                   <% end %>
                 </tr>
               </thead>
               <tbody>
-                <!-- <tr id="confirmed-orders" style="background-color: rgba(125, 255, 0, 0.50);">
-                  <td colspan="100"><b>Confirmed Orders</b></td>
-                </tr> -->
                 <% @orders.each do |order| %>
-                  <tr class="confirmed-orders">
+                  <tr class="<%= slug(order['category']) %>">
                     <td><%= order['name'] %></td>
+                    <td><%= order['category'] %></td>
                     <% @headers.each do |header| %>
                       <td><%= zeroifnil(order['assemblies'][header.id]) %></td>
                     <% end %>
                   </tr>
                 <% end %>
-                <tr id="confirmed-orders" style="background-color: rgba(125, 255, 0, 0.15);">
+                <tr id="customer-requirement" style="background-color: rgba(125, 255, 0, 0.15);">
+                  <td>Customer Requirement</td>
                   <td>Customer Requirement</td>
                   <% @headers.each do |header| %>
                     <td>0</td>
                   <% end %>
                 </tr>
-                <!-- <tr style="background-color: rgba(0, 58, 255, 0.5);">
-                  <td colspan="100"><b>Inventory</b></td>
-                </tr> -->
                 <% @modules.each do |m| %>
                   <tr class="inventory <%= checkhidden(m[1]['visible'], 'class') %>" style="<%= checkhidden(m[1]['visible'], 'style') %>; background-color: <%= m[1]['color'] %>">
                     <td><%= m[1]['name'] %></td>
+                    <td>Material Count</td>
                     <% @headers.each do |header| %>
                       <td><%= zeroifnil(m[1][header.id]) %></td>
                     <% end %>
@@ -53,20 +56,23 @@
                 <% end %>
                 <tr id="inventory-balance" style="background-color: rgba(92, 104, 115, 0.5);">
                   <td><b>Inventory Count</b></td>
+                  <td>Total</td>
                   <% @headers.each do |header| %>
                     <td>0</td>
                   <% end %>
                 </tr>
                 <tr id="material-balance" style="background-color: rgba(92, 104, 115, 0.5);">
                   <td><b>Material Balance</b></td>
+                  <td>Total</td>
                   <% @headers.each do |header| %>
                     <td class="conditional">0</td>
                   <% end %>
                 </tr>
-                <tr style="background-color: rgba(92, 104, 115, 0.5);">
+                <tr id="min-order" style="background-color: rgba(92, 104, 115, 0.5);">
                   <td><b>Min. Order Quantity</b></td>
+                  <td>Total</td>
                   <% @headers.each do |header| %>
-                    <td>0</td>
+                    <td class="conditional2">0</td>
                   <% end %>
                 </tr>
               </tbody>

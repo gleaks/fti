@@ -22,6 +22,14 @@ module ApplicationHelper
         end
     end
 
+    def slug(a)
+      if a == 'Confirmed Order'
+        return a.gsub(/\s+/, "-").downcase + ' math'
+      else
+        return a.gsub(/\s+/, "-").downcase
+      end
+    end
+
     def checkhidden(a, b)
         if b == 'style'
           if a == false
