@@ -6,19 +6,19 @@ $color-2: rgba(0, 0, 0, .26);
 $color-3: rgba(255, 255, 255, 1);
 $color-4: rgba(255, 255, 255, 0.3);
 
-.material-icons.md-18 {
+.material-icons.md-18, .material-icons-outlined.md-18 {
 	font-size: 18px;
 }
 
-.material-icons.md-24 {
+.material-icons.md-24, .material-icons-outlined.md-24 {
 	font-size: 24px;
 }
 
-.material-icons.md-36 {
+.material-icons.md-36, .material-icons-outlined.md-36 {
 	font-size: 36px;
 }
 
-.material-icons.md-48 {
+.material-icons.md-48, .material-icons-outlined.md-48 {
 	font-size: 48px;
 }
 
@@ -40,4 +40,19 @@ $color-4: rgba(255, 255, 255, 0.3);
 
 .red {
 	background-color: rgb(220, 53, 69);
+}
+
+.box {
+	display: block;
+	width: 200px;
+	height: 100px;
+	background-color: #DDD;
+}
+
+#pop {
+	padding: 0;
+}
+
+#example {
+	position: relative;
 }

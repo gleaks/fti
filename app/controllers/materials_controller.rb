@@ -5,7 +5,8 @@ class MaterialsController < ApplicationController
     # Fetch every order from the database
     orders = Order.all.order(category_id: :asc, date: :desc)
     # Fetch all active assemblies
-    @headers = Assembly.where(active: true).order(order: :asc)
+    @headers = Assembly.where(active: true).order(category_id: :asc, order: :asc, name: :desc)
+    @subheaders = Category.joins(:assemblies).where('assemblies.active = ?', true).order(order: :asc).select('categories.*, COUNT(assemblies.id) as count').group('categories.id')
     @count = Assembly.group(:order).count
 
     # Start an empty array of all of the orders that will be filled when we are done with iterating over each order
@@ -29,7 +30,7 @@ class MaterialsController < ApplicationController
     end
 
     # Group everything in the module log by assembly & category, summing up the total in each group
-    modules = Modulelog.select('assembly_id, category_id, count(id) as total').order(category_id: :asc).group('assembly_id', 'category_id')
+    modulecount = Modulelog.select('array_agg(id) as ids, assembly_id, category_id, count(id) as total').order(category_id: :asc).group('assembly_id', 'category_id')
     # Start an empty hash for all the modulelog data to be filled in by iterations
     @modules = {}
 
@@ -40,9 +41,11 @@ class MaterialsController < ApplicationController
       @modules[category.id] = { 'name' => category.name, 'visible' => category.visible, 'color' => category.color }
     end
 
-    modules.each do |m|
+    modulecount.each do |m|
       # Iterate over all the modules we grouped together earlier & place in their appropriate hash with a new key/value of the assembly and how many there are
-      @modules[m.category_id][m.assembly_id] = m.total
+      @modules[m.category_id][m.assembly_id] = {}
+      @modules[m.category_id][m.assembly_id]['total'] = m.total
+      @modules[m.category_id][m.assembly_id]['ids'] = m.ids
     end
   end
 end

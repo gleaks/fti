@@ -1,0 +1,7 @@
+<% mod['ids'].each_with_index do |a, index| %>
+  <% if index == mod['ids'].size - 1 %>
+    <%= link_to a, modulelog_path(a) %>
+  <% else %>
+    <%= link_to a, modulelog_path(a) %> -
+  <% end %>
+<% end %>

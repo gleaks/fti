@@ -15,6 +15,10 @@
           <div class="card-body">
             <table id="material-table" class="table table-responsive-sm table-bordered table-sm">
               <thead>
+                <th colspan="2"></th>
+                <% @subheaders.each do |sh| %>
+                  <th colspan="<%= sh.count %>"><%= sh.name %></th>
+                <% end %>
                 <tr>
                   <th class="nosearch"></th>
                   <th class="hidden search">Category</th>
@@ -22,7 +26,7 @@
                     <th class="<%= checkhidden(header.current, 'class') %> <%= header.order %> nosearch">
                       <%= header.shortname %>
                       <% if @count[header.order] > 1 && header.current%>
-                        <a href="#" class="toggle-vis" data-column="<%= header.order %>">+</a>
+                        <i class="material-icons md-18 toggle-vis" data-column="<%= header.order %>">keyboard_arrow_right</i>
                       <% end %>
                     </th>
                   <% end %>
@@ -50,7 +54,14 @@
                     <td><%= m[1]['name'] %></td>
                     <td>Material Count</td>
                     <% @headers.each do |header| %>
-                      <td><%= zeroifnil(m[1][header.id]) %></td>
+                      <td>
+                        <% if m[1][header.id].nil? %>
+                          0
+                        <% else %>
+                          <%= m[1][header.id]['total'] %>
+                          <i class="material-icons md-18 pop" data-container="body" data-toggle="popover" data-placement="right" data-content='<%= render partial: "module_links", locals: {mod: m[1][header.id]} %>'>help_outline</i>
+                        <% end %>
+                      </td>
                     <% end %>
                   </tr>
                 <% end %>

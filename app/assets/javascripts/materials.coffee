@@ -11,6 +11,7 @@ $(document).on 'turbolinks:load', ->
     'paging': false
     'ordering': false
     'info': false
+    'scrollX': true
     'columnDefs': [{
       'targets': 'hidden'
       'visible': false
@@ -107,6 +108,7 @@ $(document).on 'turbolinks:load', ->
       confirmed_orders = api.rows('.math').data()
       confirmed_count = api.row('#customer-requirement')
       inventory = api.rows('.inventory.visible').data()
+      console.log(inventory)
       inv_balance = api.row('#inventory-balance')
       balance = api.row('#material-balance')
       minorder = api.row('#min-order')
@@ -175,14 +177,14 @@ $(document).on 'turbolinks:load', ->
       api.rows('.math').invalidate()
       api.rows('.inventory.visible').invalidate()
     )
-  $('a.toggle-vis').on 'click', (e) ->
+  $('i.toggle-vis').on 'click', (e) ->
     e.preventDefault()
     columns = table.columns('.hidden.' + $(this).attr('data-column'))
     column = table.column('.hidden.' + $(this).attr('data-column'))
     columns.visible !column.visible()
     if column.visible()
-      $(this).text('-')
+      $(this).text('keyboard_arrow_left')
     else
-      $(this).text('+')
+      $(this).text('keyboard_arrow_right')
 
   return
