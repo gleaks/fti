@@ -22,7 +22,7 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require_tree .
 
-$(function() {
+$(document).on('turbolinks:load', function() {
   $(".pop").popover({
       trigger: "manual",
       html: true,

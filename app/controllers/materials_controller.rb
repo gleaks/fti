@@ -5,9 +5,11 @@ class MaterialsController < ApplicationController
     # Fetch every order from the database
     orders = Order.all.order(category_id: :asc, date: :desc)
     # Fetch all active assemblies
-    @headers = Assembly.where(active: true).order(category_id: :asc, order: :asc, name: :desc)
+    @headers = Assembly.where(active: true).order(order: :asc)
     @subheaders = Category.joins(:assemblies).where('assemblies.active = ?', true).order(order: :asc).select('categories.*, COUNT(assemblies.id) as count').group('categories.id')
     @count = Assembly.group(:order).count
+
+    @ordercategories = Category.where(table: 'orders').order(order: :asc)
 
     # Start an empty array of all of the orders that will be filled when we are done with iterating over each order
     @orders = []

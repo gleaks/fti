@@ -2,8 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-regex = ['\\bTotal\\b', '\\bMaterial Count\\b', '\\bCustomer Requirement\\b', '\\bConfirmed Order\\b']
-test = console.log()
+regex = ['\\bTotal\\b', '\\bMaterial Count\\b',
+  '\\bCustomer Requirement\\b', '\\bConfirmed Order\\b']
 
 $(document).on 'turbolinks:load', ->
   # Set up datatable
@@ -31,84 +31,13 @@ $(document).on 'turbolinks:load', ->
     rowGroup:
       dataSrc: 1
       endRender: null
-    dom: 'Brtip'
-    buttons:
-      dom:
-        container:
-          className: 'dt-buttons'
-      buttons: ['copy', 'csv', 'excel', 'pdf', 'print',
-      {
-        text: 'Quotes'
-        className: 'float-right'
-        action: (e, dt, node, config) ->
-          e.preventDefault()
-          if $(node).hasClass('active')
-            $(node).removeClass('active')
-            regex.splice(regex.indexOf('\\bQuote\\b'), 1)
-            dt.rows('.quote').nodes().to$().removeClass('math')
-            dt.search(regex.join('|')).draw()
-          else
-            $(node).addClass('active')
-            regex.unshift('\\bQuote\\b')
-            dt.rows('.quote').nodes().to$().addClass('math')
-            dt.search(regex.join('|')).draw()
-      }
-      {
-        text: 'Potential Orders'
-        className: 'float-right'
-        action: (e, dt, node, config) ->
-          e.preventDefault()
-          if $(node).hasClass('active')
-            $(node).removeClass('active')
-            regex.splice(regex.indexOf('\\bPotential Order\\b'), 1)
-            dt.rows('.potential-order').nodes().to$().removeClass('math')
-            dt.search(regex.join('|')).draw()
-          else
-            $(node).addClass('active')
-            regex.unshift('\\bPotential Order\\b')
-            dt.rows('.potential-order').nodes().to$().addClass('math')
-            dt.search(regex.join('|')).draw()
-      }
-      {
-        text: 'Likely Orders'
-        className: 'float-right'
-        action: (e, dt, node, config) ->
-          e.preventDefault()
-          if $(node).hasClass('active')
-            $(node).removeClass('active')
-            regex.splice(regex.indexOf('\\bLikely Order\\b'), 1)
-            dt.rows('.likely-order').nodes().to$().removeClass('math')
-            dt.search(regex.join('|')).draw()
-          else
-            $(node).addClass('active')
-            regex.unshift('\\bLikely Order\\b')
-            dt.rows('.likely-order').nodes().to$().addClass('math')
-            dt.search(regex.join('|')).draw()
-      }
-      {
-        text: 'Confirmed Orders'
-        className: 'float-right active'
-        action: (e, dt, node, config) ->
-          e.preventDefault()
-          if $(node).hasClass('active')
-            $(node).removeClass('active')
-            regex.splice(regex.indexOf('\\bConfirmed Order\\b'), 1)
-            dt.rows('.confirmed-order').nodes().to$().removeClass('math')
-            dt.search(regex.join('|')).draw()
-          else
-            $(node).addClass('active')
-            regex.unshift('\\bConfirmed Order\\b')
-            dt.rows('.confirmed-order').nodes().to$().addClass('math')
-            dt.search(regex.join('|')).draw()
-      }
-      ]
+    dom: 'rtip'
     'drawCallback': (settings) ->
       api = @api()
 
       confirmed_orders = api.rows('.math').data()
       confirmed_count = api.row('#customer-requirement')
       inventory = api.rows('.inventory.visible').data()
-      console.log(inventory)
       inv_balance = api.row('#inventory-balance')
       balance = api.row('#material-balance')
       minorder = api.row('#min-order')
@@ -176,7 +105,12 @@ $(document).on 'turbolinks:load', ->
 
       api.rows('.math').invalidate()
       api.rows('.inventory.visible').invalidate()
+
     )
+
+  new ($.fn.dataTable.Buttons)(table, buttons: ['copy', 'print', 'pdf', 'excel', 'csv'])
+  $('.toolbar').append(table.buttons(0, null).container())
+
   $('i.toggle-vis').on 'click', (e) ->
     e.preventDefault()
     columns = table.columns('.hidden.' + $(this).attr('data-column'))
@@ -187,4 +121,19 @@ $(document).on 'turbolinks:load', ->
     else
       $(this).text('keyboard_arrow_right')
 
+  $('button.toggle-order').on 'click', (e) ->
+    e.preventDefault()
+    search = $(this).attr('data-order')
+    rowclass = search.toLowerCase().split(' ')[0]
+    console.log(rowclass)
+    if $(this).hasClass('active')
+      $(this).removeClass('active')
+      regex.splice(regex.indexOf('\\b' + search + '\\b'), 1)
+      table.rows('.' + rowclass).nodes().to$().removeClass('math')
+      table.search(regex.join('|')).draw()
+    else
+      $(this).addClass('active')
+      regex.unshift('\\b' + search + '\\b')
+      table.rows('.' + rowclass).nodes().to$().addClass('math')
+      table.search(regex.join('|')).draw()
   return

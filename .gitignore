@@ -13,6 +13,10 @@
 # Ignore AWS pemfile
 fti-gareth.pem
 
+# Ignore Vagrant files
+Vagrantfile
+/.vagrant
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal

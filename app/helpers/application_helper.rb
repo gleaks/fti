@@ -1,48 +1,50 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
-    def custom_bootstrap_flash
-      flash_messages = []
-      flash.each do |type, message|
-        type = 'success' if type == 'notice'
-        type = 'error'   if type == 'alert'
-        text = "<script>toastr.#{type}('#{message}');</script>"
-        flash_messages << text.html_safe if message
-      end
-      flash_messages.join("\n").html_safe
+  def custom_bootstrap_flash
+    flash_messages = []
+    flash.each do |type, message|
+      type = 'success' if type == 'notice'
+      type = 'error'   if type == 'alert'
+      text = "<script>toastr.#{type}('#{message}');</script>"
+      flash_messages << text.html_safe if message
     end
+    flash_messages.join("\n").html_safe
+  end
 
-    def multiply(a, b)
-        return a*b
+  def multiply(a, b)
+    a * b
+  end
+
+  def zeroifnil(a)
+    if a.nil?
+      0
+    else
+      a
     end
+  end
 
-    def zeroifnil(a)
-        if a.nil?
-            return 0
-        else
-            return a
-        end
+  def slug(a)
+    if a == 'Confirmed Order'
+      a.split(' ')[0].downcase + ' math'
+    else
+      a.split(' ')[0].downcase
     end
+  end
 
-    def slug(a)
-      if a == 'Confirmed Order'
-        return a.gsub(/\s+/, "-").downcase + ' math'
+  def checkactive(a)
+    'active' if a == 'Confirmed Order'
+  end
+
+  def checkhidden(a, b)
+    if b == 'style'
+      'visibility:collapse' if a == false
+    else
+      if a == true
+        'visible'
       else
-        return a.gsub(/\s+/, "-").downcase
+        'hidden'
       end
     end
-
-    def checkhidden(a, b)
-        if b == 'style'
-          if a == false
-              return 'visibility:collapse'
-          else
-              return ''
-          end
-        else
-          if a == true
-            return 'visible'
-          else
-            return 'hidden'
-          end
-        end
-    end
+  end
 end

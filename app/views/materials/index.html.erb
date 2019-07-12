@@ -13,6 +13,13 @@
             Material Status
           </div>
           <div class="card-body">
+            <div class="toolbar">
+              <div class="btn-group">
+                <% @ordercategories.each do |cat| %>
+                  <button data-order="<%= cat.name %>" class="btn btn-secondary toggle-order <%= checkactive(cat.name) %>" type="button"><%= cat.name %></button>
+                <% end %>
+              </div>
+            </div>
             <table id="material-table" class="table table-responsive-sm table-bordered table-sm">
               <thead>
                 <th colspan="2"></th>
