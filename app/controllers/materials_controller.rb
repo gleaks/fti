@@ -7,7 +7,7 @@ class MaterialsController < ApplicationController
     # Fetch all active assemblies
     @headers = Assembly.where(active: true).order(order: :asc)
     @subheaders = Category.joins(:assemblies).where('assemblies.active = ?', true).order(order: :asc).select('categories.*, COUNT(assemblies.id) as count').group('categories.id')
-    @count = Assembly.group(:order).count
+    @count = Assembly.where(active: true).group(:order).count
 
     @ordercategories = Category.where(table: 'orders').order(order: :asc)
 

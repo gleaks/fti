@@ -5,7 +5,7 @@ csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   t = Modulelog.new
   t.serial = row['serial']
-  t.assembly_id = row['assembly_id']
+  t.assembly_id = row['﻿assembly_id']
   t.category_id = row['category_id']
   t.version = row['version']
   t.notes = row['notes']
@@ -14,7 +14,7 @@ csv.each do |row|
   if t.save
     puts "#{t.serial} saved"
   else
-    puts "#{t.errors.full_messages}"
+    puts "#{t.errors.full_messages} - #{row['﻿assembly_id']} - #{row['serial']} - #{row['category_id']}"
   end
 end
 
