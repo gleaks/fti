@@ -5,4 +5,12 @@
 $(document).on 'turbolinks:load', ->
   $('#orders-table').DataTable
     'pageLength': 50
+
+  $('.s2').select2
+    theme: 'bootstrap'
+
+  $('#order_boms').on 'cocoon:after-insert', (e, i, o) ->
+    $('.s2').select2
+      theme: 'bootstrap'
+    return
   return

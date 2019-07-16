@@ -109,7 +109,11 @@ $(document).on 'turbolinks:load', ->
     )
 
   if $('#material-table').length
-    new ($.fn.dataTable.Buttons)(table, buttons: ['copy', 'print', 'pdf', 'excel', 'csv'])
+    new ($.fn.dataTable.Buttons)(table,
+      buttons: [
+        'copy', 'print', 'pdf', 'excel', 'csv'
+    ])
+
     $('.toolbar').append(table.buttons(0, null).container())
 
     $('i.toggle-vis').on 'click', (e) ->

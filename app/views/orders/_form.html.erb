@@ -3,7 +3,7 @@
     <% if order.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
-  
+
         <ul>
         <% order.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -11,56 +11,56 @@
         </ul>
       </div>
     <% end %>
-  
+
     <div class="form-group row">
       <%= form.label :name, class: 'col-md-3 col-form-label' %>
       <div class="col-md-9">
         <%= form.text_field :name, class: 'form-control' %>
       </div>
     </div>
-  
+
     <div class="form-group row">
       <%= form.label :date, class: 'col-md-3 col-form-label' %>
       <div class="col-md-9">
         <%= form.date_select :date, {}, { :class=>'form-control' } %>
       </div>
     </div>
-  
+
     <div class="form-group row">
       <%= form.label :delivery, class: 'col-md-3 col-form-label' %>
       <div class="col-md-9">
         <%= form.text_field :delivery, class: 'form-control' %>
       </div>
     </div>
-  
+
     <div class="form-group row">
       <%= form.label :payment, class: 'col-md-3 col-form-label' %>
       <div class="col-md-9">
         <%= form.text_field :payment, class: 'form-control' %>
       </div>
     </div>
-  
+
     <div class="form-group row">
       <%= form.label :warranty, class: 'col-md-3 col-form-label' %>
       <div class="col-md-9">
         <%= form.text_field :warranty, class: 'form-control' %>
       </div>
     </div>
-  
+
     <div class="form-group row">
       <%= form.label :category_id, class: 'col-md-3 col-form-label' %>
       <div class="col-md-9">
-        <%= form.collection_select :category_id, @categories, :id, :name, {}, {:class=>'form-control'} %>
+        <%= form.collection_select :category_id, @categories, :id, :name, {}, {:class=>'form-control s2'} %>
       </div>
     </div>
-  
+
     <div class="form-group row">
       <%= form.label :customer_id, class: 'col-md-3 col-form-label' %>
       <div class="col-md-9">
-        <%= form.collection_select :customer_id, @customers, :id, :name, {}, {:class=>'form-control'} %>
+        <%= form.collection_select :customer_id, @customers, :id, :name, {}, {:class=>'form-control s2'} %>
       </div>
     </div>
-    
+
     <h2>Order Item List</h2>
     <div id="order_boms">
       <%= form.fields_for :order_boms do |order_bom| %>

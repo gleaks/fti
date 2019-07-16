@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @categories = Category.where(table: 'orders')
+    @productcategories = Category.where(table: 'products')
     @customers = Customer.all
     @products = Product.all
   end
@@ -23,7 +24,8 @@ class OrdersController < ApplicationController
   def edit
     @customers = Customer.all
     @categories = Category.where(table: 'orders')
-    @products = Product.all
+    @productcategories = Category.where(table: 'products').order(name: :asc)
+    @products = Product.all.order(name: :asc)
   end
 
   # POST /orders

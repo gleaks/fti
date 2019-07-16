@@ -47,4 +47,25 @@ module ApplicationHelper
       end
     end
   end
+
+  def color_to_class(a)
+    case a
+    when 'rgba(4, 0, 255, 0.15);'
+      'badge-success'
+    when 'rgba(0, 255, 20, 0.15);'
+      'badge-primary'
+    when 'rgba(255, 106, 0, 0.15);'
+      'badge-warning'
+    when 'rgba(255, 200, 0, 0.15);'
+      'badge-warning'
+    when 'badge-info'
+      'badge-info'
+    when 'badge-danger'
+      'badge-danger'
+    when 'badge-dark'
+      'badge-dark'
+    else
+      'badge-secondary'
+    end
+  end
 end

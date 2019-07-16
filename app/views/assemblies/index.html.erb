@@ -25,24 +25,24 @@
                             <tr>
                               <th>Name</th>
                               <th>Short Name</th>
-                              <th>Spin</th>
-                              <th>Length</th>
+                              <th>Active</th>
+                              <th>Current</th>
                               <th>Category</th>
                               <th></th>
                             </tr>
                           </thead>
-                        
+
                           <tbody>
                             <% @assemblies.each do |assembly| %>
                               <tr>
                                 <td>
-                                    <%= link_to assembly do %> 
-                                        <%= assembly.name %>
+                                    <%= link_to assembly do %>
+                                        <%= assembly.fullname %>
                                     <% end %>
                                 </td>
-                                <td><%= assembly.shortname %></td>
-                                <td><%= assembly.spin %></td>
-                                <td><%= assembly.length %></td>
+                                <td><%= assembly.fullshortname %></td>
+                                <td><%= assembly.active %></td>
+                                <td><%= assembly.current %></td>
                                 <td><%= assembly.category.name %></td>
                                 <td><%= link_to 'Edit', edit_assembly_path(assembly) %> | <%= link_to 'Destroy', assembly, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                               </tr>
