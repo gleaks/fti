@@ -108,32 +108,33 @@ $(document).on 'turbolinks:load', ->
 
     )
 
-  new ($.fn.dataTable.Buttons)(table, buttons: ['copy', 'print', 'pdf', 'excel', 'csv'])
-  $('.toolbar').append(table.buttons(0, null).container())
+  if $('#material-table').length
+    new ($.fn.dataTable.Buttons)(table, buttons: ['copy', 'print', 'pdf', 'excel', 'csv'])
+    $('.toolbar').append(table.buttons(0, null).container())
 
-  $('i.toggle-vis').on 'click', (e) ->
-    e.preventDefault()
-    columns = table.columns('.hidden.' + $(this).attr('data-column'))
-    column = table.column('.hidden.' + $(this).attr('data-column'))
-    columns.visible !column.visible()
-    if column.visible()
-      $(this).text('keyboard_arrow_left')
-    else
-      $(this).text('keyboard_arrow_right')
+    $('i.toggle-vis').on 'click', (e) ->
+      e.preventDefault()
+      columns = table.columns('.hidden.' + $(this).attr('data-column'))
+      column = table.column('.hidden.' + $(this).attr('data-column'))
+      columns.visible !column.visible()
+      if column.visible()
+        $(this).text('keyboard_arrow_left')
+      else
+        $(this).text('keyboard_arrow_right')
 
-  $('button.toggle-order').on 'click', (e) ->
-    e.preventDefault()
-    search = $(this).attr('data-order')
-    rowclass = search.toLowerCase().split(' ')[0]
-    console.log(rowclass)
-    if $(this).hasClass('active')
-      $(this).removeClass('active')
-      regex.splice(regex.indexOf('\\b' + search + '\\b'), 1)
-      table.rows('.' + rowclass).nodes().to$().removeClass('math')
-      table.search(regex.join('|')).draw()
-    else
-      $(this).addClass('active')
-      regex.unshift('\\b' + search + '\\b')
-      table.rows('.' + rowclass).nodes().to$().addClass('math')
-      table.search(regex.join('|')).draw()
+    $('button.toggle-order').on 'click', (e) ->
+      e.preventDefault()
+      search = $(this).attr('data-order')
+      rowclass = search.toLowerCase().split(' ')[0]
+      console.log(rowclass)
+      if $(this).hasClass('active')
+        $(this).removeClass('active')
+        regex.splice(regex.indexOf('\\b' + search + '\\b'), 1)
+        table.rows('.' + rowclass).nodes().to$().removeClass('math')
+        table.search(regex.join('|')).draw()
+      else
+        $(this).addClass('active')
+        regex.unshift('\\b' + search + '\\b')
+        table.rows('.' + rowclass).nodes().to$().addClass('math')
+        table.search(regex.join('|')).draw()
   return

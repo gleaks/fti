@@ -32,7 +32,7 @@ class MaterialsController < ApplicationController
     end
 
     # Group everything in the module log by assembly & category, summing up the total in each group
-    modulecount = Modulelog.select('array_agg(id) as ids, assembly_id, category_id, count(id) as total').order(category_id: :asc).group('assembly_id', 'category_id')
+    modulecount = Modulelog.select('array_agg(serial) as serials, array_agg(id) as ids, assembly_id, category_id, count(id) as total').order(category_id: :asc).group('assembly_id', 'category_id')
     # Start an empty hash for all the modulelog data to be filled in by iterations
     @modules = {}
 
@@ -48,6 +48,7 @@ class MaterialsController < ApplicationController
       @modules[m.category_id][m.assembly_id] = {}
       @modules[m.category_id][m.assembly_id]['total'] = m.total
       @modules[m.category_id][m.assembly_id]['ids'] = m.ids
+      @modules[m.category_id][m.assembly_id]['serials'] = m.serials
     end
   end
 end

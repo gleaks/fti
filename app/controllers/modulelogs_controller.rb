@@ -3,7 +3,8 @@ class ModulelogsController < ApplicationController
 
   # GET /modulelogs
   def index
-    @modulelogs = Modulelog.all
+    @modulelogs = Modulelog.all.order(serial: :desc)
+    @assemblies = Assembly.select(:name).distinct.order(name: :asc)
   end
 
   # GET /modulelogs/1

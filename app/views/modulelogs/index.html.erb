@@ -20,6 +20,15 @@
                         </div>
                     </div>
                     <div class="card-body">
+                      <div class="toolbar">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" id="modlogfilters">All Modules</button>
+                        <div class="dropdown-menu" aria-labelledby="modlogfilters" x-placement="bottom-start">
+                          <a href="#" data-order="_all" class="toggle-assembly dropdown-item active">All Modules</a>
+                          <div class="dropdown-divider"></div>
+                          <% @assemblies.each do |assembly| %>
+                            <a href="#" data-order="<%= assembly.name %>" class="toggle-assembly dropdown-item"><%= assembly.name %></a>
+                          <% end %>
+                        </div>
                         <table id="modulelogs-table" class="table table-responsive-sm table-bordered table-striped table-sm">
                           <thead>
                             <tr>
@@ -31,12 +40,12 @@
                               <th></th>
                             </tr>
                           </thead>
-                        
+
                           <tbody>
                             <% @modulelogs.each do |modulelog| %>
                               <tr>
                                 <td>
-                                    <%= link_to modulelog do %> 
+                                    <%= link_to modulelog do %>
                                         <%= modulelog.serial %>
                                     <% end %>
                                 </td>
@@ -57,5 +66,3 @@
 </div>
 
 <br>
-
-
