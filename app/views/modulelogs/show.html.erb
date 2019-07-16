@@ -1,39 +1,48 @@
-<p id="notice"><%= notice %></p>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/">Home</a>
+    </li>
+    <li class="breadcrumb-item"><%= link_to 'Module Log', modulelogs_path %></li>
+    <li class="breadcrumb-item"><%= @modulelog.assembly.fullshortname %> - #<%= @modulelog.serial %></li>
+</ol>
 
-<p>
-  <strong>Serial:</strong>
-  <%= @modulelog.serial %>
-</p>
-
-<p>
-  <strong>Version:</strong>
-  <%= @modulelog.version %>
-</p>
-
-<p>
-  <strong>Order:</strong>
-  <%= @modulelog.order %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @modulelog.date %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @modulelog.category %>
-</p>
-
-<p>
-  <strong>Assembly:</strong>
-  <%= @modulelog.assembly %>
-</p>
-
-<p>
-  <strong>Notes:</strong>
-  <%= @modulelog.notes %>
-</p>
-
-<%= link_to 'Edit', edit_modulelog_path(@modulelog) %> |
-<%= link_to 'Back', modulelogs_path %>
+<div class="container-fluid">
+    <div id="ui-view">
+        <div>
+          <p id="notice"><%= notice %></p>
+          <div class="animated fadeIn">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        Module Information
+                        <div class="card-header-actions">
+                          <%= link_to 'Edit Module Log', edit_modulelog_path(@modulelog), class: 'card-header-action' %>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                      <ul class="list-group">
+                        <li class="list-group-item">
+                          <b>Assembly</b> <span class="float-right"><%= link_to @modulelog.assembly.fullname, assembly_path(@modulelog.assembly_id) %></span>
+                        </li>
+                        <li class="list-group-item">
+                          <b>Serial #</b> <span class="float-right"><%= @modulelog.serial %></span>
+                        </li>
+                        <li class="list-group-item">
+                          <b>Version</b> <span class="float-right"><%= @modulelog.version %></span>
+                        </li>
+                        <li class="list-group-item">
+                          <b>Notes</b> <span class="float-right"><%= @modulelog.notes %></span>
+                        </li>
+                        <li class="list-group-item">
+                          <b>Status</b> <span class="float-right"><%= @modulelog.category.name %> (<%= @modulelog.date %>)</span>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

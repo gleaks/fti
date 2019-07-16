@@ -21,43 +21,51 @@
                     </div>
                     <div class="card-body">
                       <div class="toolbar">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" id="modlogfilters">All Modules</button>
-                        <div class="dropdown-menu" aria-labelledby="modlogfilters" x-placement="bottom-start">
-                          <a href="#" data-order="_all" class="toggle-assembly dropdown-item active">All Modules</a>
-                          <div class="dropdown-divider"></div>
+                        <ul class="nav nav-pills">
+                          <li class="nav-item">
+                            <a class="nav-link active toggle-assembly" data-order="_all" href="#">ALL</a>
+                          </li>
                           <% @assemblies.each do |assembly| %>
-                            <a href="#" data-order="<%= assembly.name %>" class="toggle-assembly dropdown-item"><%= assembly.name %></a>
+                            <li class="nav-item">
+                              <a href="#" data-order="<%= assembly.name %>" class="toggle-assembly nav-link"><%= assembly.shortname %></a>
+                            </li>
+                          <% end %>
+                        </ul>
+                        <div class="btn-group" role="group">
+                          <% @categories.each do |category| %>
+                            <button type="button" class="btn btn-secondary toggle-category" cat-order="<%= category.name %>"><%= category.name %></button>
                           <% end %>
                         </div>
-                        <table id="modulelogs-table" class="table table-responsive-sm table-bordered table-striped table-sm">
-                          <thead>
-                            <tr>
-                              <th>S/N</th>
-                              <th>Module</th>
-                              <th>Version</th>
-                              <th>Date</th>
-                              <th>Category</th>
-                              <th></th>
-                            </tr>
-                          </thead>
+                      </div>
+                      <table id="modulelogs-table" class="table table-responsive-sm table-bordered table-striped table-sm">
+                        <thead>
+                          <tr>
+                            <th>S/N</th>
+                            <th>Module</th>
+                            <th>Version</th>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th></th>
+                          </tr>
+                        </thead>
 
-                          <tbody>
-                            <% @modulelogs.each do |modulelog| %>
-                              <tr>
-                                <td>
-                                    <%= link_to modulelog do %>
-                                        <%= modulelog.serial %>
-                                    <% end %>
-                                </td>
-                                <td><%= modulelog.assembly.name %></td>
-                                <td><%= modulelog.version %></td>
-                                <td><%= modulelog.date %></td>
-                                <td><%= modulelog.category.name %></td>
-                                <td><%= link_to 'Edit', edit_modulelog_path(modulelog) %> | <%= link_to 'Destroy', modulelog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                              </tr>
-                            <% end %>
-                          </tbody>
-                        </table>
+                        <tbody>
+                          <% @modulelogs.each do |modulelog| %>
+                            <tr>
+                              <td>
+                                  <%= link_to modulelog do %>
+                                      <%= modulelog.serial %>
+                                  <% end %>
+                              </td>
+                              <td><%= modulelog.assembly.fullname %></td>
+                              <td><%= modulelog.version %></td>
+                              <td><%= modulelog.date %></td>
+                              <td><%= modulelog.category.name %></td>
+                              <td><%= link_to 'Edit', edit_modulelog_path(modulelog) %> | <%= link_to 'Destroy', modulelog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
                     </div>
                 </div>
             </div>

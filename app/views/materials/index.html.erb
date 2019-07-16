@@ -31,7 +31,7 @@
                   <th class="hidden search">Category</th>
                   <% @headers.each do |header| %>
                     <th class="<%= checkhidden(header.current, 'class') %> <%= header.order %> nosearch">
-                      <%= header.shortname %>
+                      <%= header.fullshortname %>
                       <% if @count[header.order] > 1 && header.current%>
                         <i class="material-icons md-18 toggle-vis" data-column="<%= header.order %>">keyboard_arrow_right</i>
                       <% end %>

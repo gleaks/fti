@@ -2,6 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+regex = {assembly: '', cat: []}
+
 $(document).on 'turbolinks:load', ->
   table = $('#modulelogs-table').DataTable
     'pageLength': 50
@@ -11,16 +13,38 @@ $(document).on 'turbolinks:load', ->
       'smart': false
 
   if $('#modulelogs-table').length
+    $('button.toggle-category').on 'click', (e) ->
+      e.preventDefault()
+      search = $(this).attr('cat-order')
+      if $(this).hasClass('active')
+        $(this).removeClass('active')
+        regex.cat.splice(regex.cat.indexOf('\\b' + search + '\\b'), 1)
+      else
+        $(this).addClass('active')
+        regex.cat.unshift('\\b' + search + '\\b')
+      if regex.assembly == ''
+        table.search('^(?=.*(' + regex.cat.join('|') + '))').draw()
+      else
+        table.search('^(?=.*\\s' + regex.assembly + '\\b)
+                    (?=.*(' + regex.cat.join('|') + '))').draw()
     $('a.toggle-assembly').on 'click', (e) ->
       e.preventDefault()
       search = $(this).attr('data-order')
       $('a.toggle-assembly').removeClass('active')
       $(this).addClass('active')
       if search == '_all'
-        $('#modlogfilters').text('All Modules')
-        table.search('').draw()
+        regex.assembly = ''
       else
-        $('#modlogfilters').text(search)
-        table.search('\\s' + search + '\\b').draw()
-        # REGEX TO FIND 'AC Motherboard' AND ('Tested' OR 'Shipped') = ^(?=.*\bAC Motherboard\b)(?=.*(\bTested\b | \bShipped\b))
+        regex.assembly = search
+      if regex.cat.length < 1
+        if search == '_all'
+          table.search('').draw()
+        else
+          table.search('^(?=.*\\s' + search + '\\b)').draw()
+      else
+        if search == '_all'
+          table.search('^(?=.*(' + regex.cat.join('|') + '))').draw()
+        else
+          table.search('^(?=.*\\s' + search + '\\b)
+                      (?=.*(' + regex.cat.join('|') + '))').draw()
   return

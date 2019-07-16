@@ -4,7 +4,8 @@ class ModulelogsController < ApplicationController
   # GET /modulelogs
   def index
     @modulelogs = Modulelog.all.order(serial: :desc)
-    @assemblies = Assembly.select(:name).distinct.order(name: :asc)
+    @assemblies = Assembly.select(:shortname).distinct.select('shortname, name').order(shortname: :asc)
+    @categories = Category.where(table: 'modulelogs')
   end
 
   # GET /modulelogs/1

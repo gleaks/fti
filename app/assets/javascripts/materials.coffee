@@ -126,7 +126,6 @@ $(document).on 'turbolinks:load', ->
       e.preventDefault()
       search = $(this).attr('data-order')
       rowclass = search.toLowerCase().split(' ')[0]
-      console.log(rowclass)
       if $(this).hasClass('active')
         $(this).removeClass('active')
         regex.splice(regex.indexOf('\\b' + search + '\\b'), 1)
