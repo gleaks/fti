@@ -8,6 +8,7 @@ class CustomersController < ApplicationController
   end
 
   def modal
+    @customer = Customer.new
     respond_to do |format|
       format.html
       format.js

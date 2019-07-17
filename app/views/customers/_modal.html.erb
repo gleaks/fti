@@ -1,17 +1,46 @@
 <div class="modal-dialog" role="document">
   <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      ...
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-primary">Save changes</button>
-    </div>
+    <%= form_with(model: @customer, remote: true, authenticity_token: false, class: 'form-horizontal') do |form| %>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% if @customer.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+            <ul>
+              <% @customer.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="form-group row">
+          <%= form.label :name, class: 'col-md-3 col-form-label' %>
+          <div class="col-md-9">
+            <%= form.text_field :name, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :contact, class: 'col-md-3 col-form-label' %>
+          <div class="col-md-9">
+            <%= form.text_field :contact, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :address, class: 'col-md-3 col-form-label' %>
+          <div class="col-md-9">
+            <%= form.text_field :address, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= form.submit class: 'btn btn-primary' %>
+      </div>
+    <% end %>
   </div>
 </div>
