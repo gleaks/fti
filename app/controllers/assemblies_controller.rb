@@ -5,6 +5,7 @@ class AssembliesController < ApplicationController
   # GET /assemblies
   def index
     @assemblies = Assembly.all
+    @categories = Category.where(table: 'assemblies')
   end
 
   # GET /assemblies/1
@@ -14,7 +15,7 @@ class AssembliesController < ApplicationController
   # GET /assemblies/new
   def new
     @assembly = Assembly.new
-    
+
     @categories = Category.where(table: 'assemblies')
     @parts = Part.all
   end

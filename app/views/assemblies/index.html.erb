@@ -20,14 +20,27 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <div class="toolbar">
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-secondary toggle-filter active" cat-filter="active-true">Active</button>
+                            <button type="button" class="btn btn-secondary toggle-filter active" cat-filter="current-true">Current</button>
+                          </div>
+                          <div class="btn-group" role="group">
+                            <% @categories.each do |category| %>
+                              <button type="button" class="btn btn-secondary toggle-category" cat-order="<%= category.name %>"><%= category.name %></button>
+                            <% end %>
+                          </div>
+                        </div>
                         <table id="assemblies-table" class="table table-responsive-sm table-bordered table-striped table-sm">
                           <thead>
                             <tr>
                               <th>Name</th>
                               <th>Short Name</th>
+                              <th class="hidden">active-search</th>
+                              <th class="hidden">current-search</th>
+                              <th>Category</th>
                               <th>Active</th>
                               <th>Current</th>
-                              <th>Category</th>
                               <th></th>
                             </tr>
                           </thead>
@@ -41,9 +54,11 @@
                                     <% end %>
                                 </td>
                                 <td><%= assembly.fullshortname %></td>
-                                <td><%= assembly.active %></td>
-                                <td><%= assembly.current %></td>
+                                <td>active-<%= assembly.active %></td>
+                                <td>current-<%= assembly.current %></td>
                                 <td><%= assembly.category.name %></td>
+                                <td><%= iconify(assembly.active) %></td>
+                                <td><%= iconify(assembly.current) %></td>
                                 <td><%= link_to 'Edit', edit_assembly_path(assembly) %> | <%= link_to 'Destroy', assembly, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                               </tr>
                             <% end %>

@@ -20,6 +20,16 @@
                         </div>
                     </div>
                     <div class="card-body">
+                      <div class="toolbar">
+                        <ul class="nav nav-pills">
+                          <% @categories.each do |category| %>
+                            <li class="nav-item">
+                              <a href="#" cat-order="<%= category.name %>" class="toggle-category nav-link"><%= category.name %></a>
+                            </li>
+                          <% end %>
+                        </ul>
+                        <button type="button" class="btn btn-secondary toggle-active active" cat-filter="active-true">Active</button>
+                      </div>
                         <table id="parts-table" class="table table-responsive-sm table-bordered table-striped table-sm">
                           <thead>
                             <tr>
@@ -27,22 +37,26 @@
                               <th>Description</th>
                               <th>Manufacturer</th>
                               <th>Manufacturer Part #</th>
+                              <th>BOM Count</th>
+                              <th class="hidden">search-active</th>
                               <th>Category</th>
                               <th></th>
                             </tr>
                           </thead>
-                        
+
                           <tbody>
                             <% @parts.each do |part| %>
                               <tr>
                                 <td>
-                                    <%= link_to part do %> 
+                                    <%= link_to part do %>
                                         <%= part.id %>
                                     <% end %>
                                 </td>
                                 <td><%= part.description %></td>
                                 <td><%= part.mfg %></td>
                                 <td><%= part.mfg_id %></td>
+                                <td><%= part.totalsum %></td>
+                                <td>active-<%= part.active %></td>
                                 <td><%= part.category.name %></td>
                                 <td><%= link_to 'Edit', edit_part_path(part) %> | <%= link_to 'Destroy', part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                               </tr>

@@ -32,6 +32,14 @@ module ApplicationHelper
     end
   end
 
+  def iconify(a)
+    if a == true
+      return '<i class="material-icons">check</i>'.html_safe
+    else
+      return '<i class="material-icons">close</i>'.html_safe
+    end
+  end
+
   def checkactive(a)
     'active' if a == 'Confirmed Order'
   end

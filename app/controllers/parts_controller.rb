@@ -5,6 +5,7 @@ class PartsController < ApplicationController
   # GET /parts
   def index
     @parts = Part.all
+    @categories = Category.where(table: 'parts').order(name: :asc)
   end
 
   # GET /parts/1
