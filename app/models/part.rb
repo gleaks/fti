@@ -7,8 +7,10 @@ class Part < ApplicationRecord
   def totalsum
     sum = 0
     assembly_boms.each do |ab|
-      ab.count = 0 if ab.count.nil?
-      sum += ab.count
+      if ab.assembly.active == true && ab.assembly.current == true
+        ab.count = 0 if ab.count.nil?
+        sum += ab.count
+      end
     end
     return sum
   end

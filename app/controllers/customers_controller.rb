@@ -7,6 +7,13 @@ class CustomersController < ApplicationController
     @customers = Customer.all
   end
 
+  def modal
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   # GET /customers/1
   def show
   end

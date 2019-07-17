@@ -28,6 +28,7 @@ gem 'toastr-rails'
 gem 'seed_dump'
 gem 'jquery-datatables-rails'
 gem 'select2-rails'
+gem 'popper_js'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
