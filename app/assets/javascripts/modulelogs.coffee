@@ -11,6 +11,12 @@ $(document).on 'turbolinks:load', ->
     'search':
       'regex': true
       'smart': false
+    dom: "<'row'<'col-sm-3'l><'col-sm-6 text-center'B><'col-sm-3'f>>" +
+          "<'row'<'col-sm-12'tr>>" +
+          "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+    buttons: [
+      'colvis'
+    ]
 
   if $('#modulelogs-table').length
     $('button.toggle-category').on 'click', (e) ->

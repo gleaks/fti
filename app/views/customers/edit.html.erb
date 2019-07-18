@@ -1,6 +1,22 @@
-<h1>Editing Customer</h1>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/">Home</a>
+    </li>
+    <li class="breadcrumb-item"><%= link_to 'Customers', customers_path %></li>
+    <li class="breadcrumb-item">Edit <%= @customer.name %></li>
+</ol>
 
-<%= render 'form', customer: @customer %>
-
-<%= link_to 'Show', @customer %> |
-<%= link_to 'Back', customers_path %>
+<div class="container-fluid">
+    <div id="ui-view">
+        <div>
+            <div class="animated fadeIn">
+                <div class="card">
+                    <div class="card-header">
+                        Edit Customer
+                    </div>
+                    <%= render 'form', customer: @customer %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
