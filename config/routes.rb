@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :modulelogs
-  resources :locations
   get 'welcome/index'
   root 'welcome#index'
 
@@ -11,12 +9,18 @@ Rails.application.routes.draw do
 
   get 'customers/modal' => 'customers#modal', :as => :customer_modal
   get 'categories/modal' => 'categories#modal', :as => :category_modal
+  get 'octopart/:id' => 'octopart#index', :as => :octopart
   resources :customers
   resources :orders
   resources :products
   resources :assemblies
   resources :parts
   resources :categories
+  resources :vendorparts
+  resources :vendors
+  resources :stocks
+  resources :modulelogs
+  resources :locations
 
   resources :materials, only: [:index]
 

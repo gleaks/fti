@@ -1,0 +1,2 @@
+module VendorpartsHelper
+end

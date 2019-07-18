@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Vendorparts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Vendor</th>
+      <th>Part</th>
+      <th>Vendor part</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vendorparts.each do |vendorpart| %>
+      <tr>
+        <td><%= vendorpart.vendor %></td>
+        <td><%= vendorpart.part %></td>
+        <td><%= vendorpart.vendor_part %></td>
+        <td><%= vendorpart.price %></td>
+        <td><%= vendorpart.quantity %></td>
+        <td><%= link_to 'Show', vendorpart %></td>
+        <td><%= link_to 'Edit', edit_vendorpart_path(vendorpart) %></td>
+        <td><%= link_to 'Destroy', vendorpart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vendorpart', new_vendorpart_path %>

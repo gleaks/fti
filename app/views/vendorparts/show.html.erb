@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Vendor:</strong>
+  <%= @vendorpart.vendor %>
+</p>
+
+<p>
+  <strong>Part:</strong>
+  <%= @vendorpart.part %>
+</p>
+
+<p>
+  <strong>Vendor part:</strong>
+  <%= @vendorpart.vendor_part %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @vendorpart.price %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @vendorpart.quantity %>
+</p>
+
+<%= link_to 'Edit', edit_vendorpart_path(@vendorpart) %> |
+<%= link_to 'Back', vendorparts_path %>

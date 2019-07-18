@@ -17,7 +17,28 @@
           <i class="nav-icon material-icons">people</i> Customers
         <% end %>
       </li>
+      <li class="nav-item">
+        <%= link_to(products_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">devices_other</i> Products
+        <% end %>
+      </li>
       <li class="nav-title">Inventory</li>
+      <li class="nav-item">
+        <%= link_to(parts_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">memory</i> Parts
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to(stocks_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">speaker_group</i> Stock
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to(vendors_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">store_mall_directory</i> Vendors
+        <% end %>
+      </li>
+      <li class="nav-title">Manufacturing</li>
       <li class="nav-item">
         <%= link_to(modulelogs_path, class: 'nav-link') do %>
           <i class="nav-icon material-icons">list</i> Module Log
@@ -29,18 +50,8 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to(parts_path, class: 'nav-link') do %>
-          <i class="nav-icon material-icons">memory</i> Parts
-        <% end %>
-      </li>
-      <li class="nav-item">
         <%= link_to(assemblies_path, class: 'nav-link') do %>
           <i class="nav-icon material-icons">developer_board</i> Assemblies
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to(products_path, class: 'nav-link') do %>
-          <i class="nav-icon material-icons">devices_other</i> Products
         <% end %>
       </li>
       <li class="nav-title">Reports</li>

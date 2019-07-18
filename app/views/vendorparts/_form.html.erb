@@ -1,0 +1,42 @@
+<%= form_with(model: vendorpart, local: true) do |form| %>
+  <% if vendorpart.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(vendorpart.errors.count, "error") %> prohibited this vendorpart from being saved:</h2>
+
+      <ul>
+      <% vendorpart.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :vendor_id %>
+    <%= form.text_field :vendor_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :part_id %>
+    <%= form.text_field :part_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vendor_part %>
+    <%= form.text_field :vendor_part %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

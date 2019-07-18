@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_01_162806) do
+ActiveRecord::Schema.define(version: 2019_07_18_225907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,6 +133,16 @@ ActiveRecord::Schema.define(version: 2019_07_01_162806) do
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
+  create_table "stocks", force: :cascade do |t|
+    t.bigint "part_id"
+    t.bigint "location_id"
+    t.integer "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_stocks_on_location_id"
+    t.index ["part_id"], name: "index_stocks_on_part_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -141,7 +151,30 @@ ActiveRecord::Schema.define(version: 2019_07_01_162806) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  create_table "vendorparts", force: :cascade do |t|
+    t.bigint "vendor_id"
+    t.bigint "part_id"
+    t.string "vendor_part"
+    t.decimal "price"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["part_id"], name: "index_vendorparts_on_part_id"
+    t.index ["vendor_id"], name: "index_vendorparts_on_vendor_id"
+  end
+
+  create_table "vendors", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "modulelogs", "assemblies"
   add_foreign_key "modulelogs", "categories"
   add_foreign_key "modulelogs", "orders"
+  add_foreign_key "stocks", "locations"
+  add_foreign_key "stocks", "parts"
+  add_foreign_key "vendorparts", "parts"
+  add_foreign_key "vendorparts", "vendors"
 end
