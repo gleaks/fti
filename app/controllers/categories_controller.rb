@@ -31,11 +31,10 @@ class CategoriesController < ApplicationController
   # POST /categories
   def create
     @category = Category.new(category_params)
-
     respond_to do |format|
       if @category.save
         format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.js { render js: "$('#modal-window').modal('hide'); $('#order_category_id').append('<option value=\"#{@category.id}\" selected=\"selected\">#{@category.name}</option>');" }
+        format.js { render js: "$('#modal-window').modal('hide'); $('##{singular(@category.table)}_category_id').append('<option value=\"#{@category.id}\" selected=\"selected\">#{@category.name}</option>');" }
       else
         render :new
       end
@@ -66,5 +65,13 @@ class CategoriesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def category_params
       params.require(:category).permit(:name, :table, :order, :visible, :color)
+    end
+
+    def singular(a)
+      if a == 'assemblies'
+        return 'assembly'
+      else
+        return a[0...-1]
+      end
     end
 end

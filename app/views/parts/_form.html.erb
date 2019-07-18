@@ -1,9 +1,10 @@
-<%= form_with(model: part, local: true, class: 'form-horizontal') do |form| %>  
+<div id="modal-window" class="modal fade hide" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"></div>
+<%= form_with(model: part, local: true, class: 'form-horizontal') do |form| %>
   <div class="card-body">
     <% if part.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(part.errors.count, "error") %> prohibited this part from being saved:</h2>
-  
+
         <ul>
         <% part.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -11,32 +12,35 @@
         </ul>
       </div>
     <% end %>
-  
+
     <div class="form-group row">
       <%= form.label :description, class: 'col-md-3 col-form-label' %>
       <div class="col-md-9">
         <%= form.text_field :description, class: 'form-control' %>
       </div>
     </div>
-  
+
     <div class="form-group row">
       <%= form.label :mfg, class: 'col-md-3 col-form-label' %>
       <div class="col-md-9">
         <%= form.text_field :mfg, class: 'form-control' %>
       </div>
     </div>
-  
+
     <div class="form-group row">
       <%= form.label :mfg_id, class: 'col-md-3 col-form-label' %>
       <div class="col-md-9">
         <%= form.text_field :mfg_id, class: 'form-control' %>
       </div>
     </div>
-  
+
     <div class="form-group row">
       <%= form.label :category_id, class: 'col-md-3 col-form-label' %>
-      <div class="col-md-9">
-        <%= form.collection_select :category_id, @categories, :id, :name, {}, {:class=>'form-control'} %>
+      <div class="col-md-6">
+        <%= form.collection_select :category_id, @categories, :id, :name, {}, {:class=>'form-control s2'} %>
+      </div>
+      <div class="col-md-3">
+        <%= link_to 'Create category', category_modal_path,  {:remote => true}  %>
       </div>
     </div>
   </div>
