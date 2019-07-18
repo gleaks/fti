@@ -8,7 +8,7 @@ class Assembly < ApplicationRecord
   has_many :product_boms, dependent: :delete_all
   has_many :products, through: :product_boms
 
-  has_many :modulelogs
+  has_many :modulelogs, dependent: :delete_all
 
   def fullname
     name + ' ' + spin

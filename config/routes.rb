@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   get 'customers/modal' => 'customers#modal', :as => :customer_modal
+  get 'categories/modal' => 'categories#modal', :as => :category_modal
   resources :customers
   resources :orders
   resources :products

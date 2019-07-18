@@ -11,6 +11,14 @@ class CategoriesController < ApplicationController
   def show
   end
 
+  def modal
+    @category = Category.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   # GET /categories/new
   def new
     @category = Category.new
@@ -24,10 +32,13 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
 
-    if @category.save
-      redirect_to @category, notice: 'Category was successfully created.'
-    else
-      render :new
+    respond_to do |format|
+      if @category.save
+        format.html { redirect_to @category, notice: 'Category was successfully created.' }
+        format.js { render js: "$('#modal-window').modal('hide'); $('#order_category_id').append('<option value=\"#{@category.id}\" selected=\"selected\">#{@category.name}</option>');" }
+      else
+        render :new
+      end
     end
   end
 

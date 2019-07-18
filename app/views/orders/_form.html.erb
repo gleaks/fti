@@ -1,5 +1,5 @@
+<div id="modal-window" class="modal fade hide" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"></div>
 <%= form_with(model: order, local: true, class: 'form-horizontal') do |form| %>
-  <div id="modal-window" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"></div>
   <div class="card-body">
     <% if order.errors.any? %>
       <div id="error_explanation">
@@ -50,19 +50,23 @@
 
     <div class="form-group row">
       <%= form.label :category_id, class: 'col-md-3 col-form-label' %>
-      <div class="col-md-9">
+      <div class="col-md-6">
         <%= form.collection_select :category_id, @categories, :id, :name, {}, {:class=>'form-control s2'} %>
+      </div>
+      <div class="col-md-3">
+        <%= link_to 'Create category', category_modal_path,  {:remote => true}  %>
       </div>
     </div>
 
     <div class="form-group row">
       <%= form.label :customer_id, class: 'col-md-3 col-form-label' %>
-      <div class="col-md-9">
+      <div class="col-md-6">
         <%= form.collection_select :customer_id, @customers, :id, :name, {}, {:class=>'form-control s2'} %>
       </div>
+      <div class="col-md-3">
+        <%= link_to 'Create customer', customer_modal_path,  {:remote => true, data: {table: 'test'}}  %>
+      </div>
     </div>
-
-    <%= link_to 'Add customer', customer_modal_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %>
 
     <h2>Order Item List</h2>
     <div id="order_boms">

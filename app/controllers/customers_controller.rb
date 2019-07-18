@@ -32,10 +32,13 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
 
-    if @customer.save
-      redirect_to @customer, notice: 'Customer was successfully created.'
-    else
-      render :new
+    respond_to do |format|
+      if @customer.save
+        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
+        format.js { render js: "$('#modal-window').modal('hide'); $('#order_customer_id').append('<option value=\"#{@customer.id}\" selected=\"selected\">#{@customer.name}</option>');" }
+      else
+        render :new
+      end
     end
   end
 
