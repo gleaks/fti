@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div id="ui-view">
         <div>
-            <p id="notice"><%= notice %></p>
+
             <div class="animated fadeIn">
                 <div class="card">
                     <div class="card-header">
@@ -33,12 +33,12 @@
                               <th></th>
                             </tr>
                           </thead>
-                        
+
                           <tbody>
                             <% @orders.each do |order| %>
                               <tr>
                                 <td>
-                                    <%= link_to order do %> 
+                                    <%= link_to order do %>
                                         <%= order.name %>
                                     <% end %>
                                 </td>
@@ -48,7 +48,7 @@
                                 <td><%= order.warranty %></td>
                                 <td><%= order.category.name %></td>
                                 <td>
-                                    <%= link_to customer_path(order.customer.id) do %> 
+                                    <%= link_to customer_path(order.customer.id) do %>
                                         <%= order.customer.name %>
                                     <% end %>
                                 </td>
@@ -65,5 +65,3 @@
 </div>
 
 <br>
-
-
