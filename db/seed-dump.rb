@@ -12,7 +12,6 @@ Category.create!([
   {id: 13, name: "AC Instrument", table: "products", created_at: "2019-06-09 03:39:57", updated_at: "2019-06-26 22:07:48", order: nil, visible: nil, color: nil},
   {id: 14, name: "IC Instrument", table: "products", created_at: "2019-06-09 03:40:06", updated_at: "2019-06-26 22:07:48", order: nil, visible: nil, color: nil},
   {id: 15, name: "Options", table: "products", created_at: "2019-06-09 03:40:36", updated_at: "2019-06-26 22:07:48", order: nil, visible: nil, color: nil},
-  {id: 16, name: "Misc.", table: "products", created_at: "2019-06-09 03:40:50", updated_at: "2019-06-26 22:07:48", order: nil, visible: nil, color: nil},
   {id: 22, name: "Surge Arrester", table: "parts", created_at: "2019-06-11 20:51:49", updated_at: "2019-06-26 22:07:48", order: nil, visible: nil, color: nil},
   {id: 23, name: "Fuse", table: "parts", created_at: "2019-06-11 20:52:16", updated_at: "2019-06-26 22:07:48", order: nil, visible: nil, color: nil},
   {id: 24, name: "Hardware", table: "parts", created_at: "2019-06-11 20:52:31", updated_at: "2019-06-26 22:07:48", order: nil, visible: nil, color: nil},
@@ -54,13 +53,17 @@ Category.create!([
   {id: 17, name: "Quote", table: "orders", created_at: "2019-06-09 19:08:12", updated_at: "2019-07-11 22:44:55", order: 4, visible: true, color: ""},
   {id: 21, name: "Delayed Order", table: "orders", created_at: "2019-06-09 19:09:23", updated_at: "2019-07-11 22:44:59", order: 5, visible: true, color: ""},
   {id: 58, name: "Bone Pile", table: "modulelogs", created_at: "2019-07-12 17:11:54", updated_at: "2019-07-12 17:11:54", order: nil, visible: false, color: ""},
-  {id: 59, name: "Misc.", table: "assemblies", created_at: "2019-07-12 17:28:52", updated_at: "2019-07-12 17:34:26", order: 4, visible: true, color: ""},
   {id: 50, name: "Shipped", table: "modulelogs", created_at: "2019-06-27 19:40:16", updated_at: "2019-07-16 21:19:17", order: nil, visible: false, color: "badge-info"},
   {id: 52, name: "Returned / In Repair", table: "modulelogs", created_at: "2019-06-27 19:40:46", updated_at: "2019-07-16 21:21:00", order: nil, visible: false, color: "badge-danger"},
-  {id: 51, name: "Engineering", table: "modulelogs", created_at: "2019-06-27 19:40:29", updated_at: "2019-07-16 21:22:48", order: nil, visible: false, color: "badge-dark"}
+  {id: 51, name: "Engineering", table: "modulelogs", created_at: "2019-06-27 19:40:29", updated_at: "2019-07-16 21:22:48", order: nil, visible: false, color: "badge-dark"},
+  {id: 16, name: "Misc", table: "products", created_at: "2019-06-09 03:40:50", updated_at: "2019-07-17 19:36:13", order: nil, visible: true, color: ""},
+  {id: 59, name: "Misc", table: "assemblies", created_at: "2019-07-12 17:28:52", updated_at: "2019-07-17 19:36:48", order: 4, visible: true, color: ""}
 ])
 Customer.create!([
   {id: 1, name: "Renesas Palm Bay", contact: "Robert Bennett", address: "1200 Hellhole St, Humidity, FL", created_at: "2019-06-09 19:12:02", updated_at: "2019-06-26 22:07:49"}
+])
+Location.create!([
+  {id: 1, name: "Boulder", address: "1965 N. 57th Court, Suite 106, Boulder, CO 80301", created_at: "2019-07-18 22:56:10", updated_at: "2019-07-18 22:56:10"}
 ])
 Part.create!([
   {id: 100000, description: "IGBT NPT 1700 75A", mfg: "IXYS", mfg_id: "IXGT32N170", category_id: 2, created_at: "2019-06-11 21:20:13", updated_at: "2019-06-26 22:07:49"},
@@ -1450,6 +1453,7 @@ Part.create!([
 ])
 Assembly.create!([
   {id: 54, name: "SCM/SOA", length: "", category_id: 9, created_at: "2019-06-11 22:06:40", updated_at: "2019-07-16 17:39:06", spin: "1", shortname: "SCM", active: false, current: false, order: 8},
+  {id: 56, name: "SOA CPU", length: "", category_id: 9, created_at: "2019-06-11 22:07:28", updated_at: "2019-07-17 23:10:19", spin: "1", shortname: "SOA", active: false, current: false, order: 9},
   {id: 51, name: "RG", length: "", category_id: 47, created_at: "2019-06-11 22:05:22", updated_at: "2019-07-16 17:36:34", spin: "2.100", shortname: "RG", active: true, current: true, order: 13},
   {id: 69, name: "AC Motherboard", length: "", category_id: 47, created_at: "2019-07-12 17:04:57", updated_at: "2019-07-16 17:36:34", spin: "8", shortname: "AC", active: false, current: false, order: 10},
   {id: 76, name: "Calibration IC/DIGITAL", length: "", category_id: 59, created_at: "2019-07-12 17:39:53", updated_at: "2019-07-16 17:36:34", spin: "4", shortname: "CALIC", active: true, current: true, order: 31},
@@ -1502,7 +1506,6 @@ Assembly.create!([
   {id: 17, name: "Cap Charger", length: "", category_id: 47, created_at: "2019-06-11 21:47:48", updated_at: "2019-07-16 17:36:34", spin: "4.9", shortname: "CC", active: true, current: true, order: 11},
   {id: 24, name: "Digital", length: "", category_id: 8, created_at: "2019-06-11 21:52:55", updated_at: "2019-07-16 17:36:34", spin: "2", shortname: "DIG", active: true, current: true, order: 19},
   {id: 87, name: "DVSD", length: "", category_id: 9, created_at: "2019-07-12 20:20:05", updated_at: "2019-07-16 17:36:34", spin: "3", shortname: "DVSD", active: false, current: false, order: 7},
-  {id: 56, name: "SOA CPU", length: "", category_id: 9, created_at: "2019-06-11 22:07:28", updated_at: "2019-07-16 17:36:34", spin: "1", shortname: "SOA", active: true, current: true, order: 9},
   {id: 63, name: "Test Head Mux", length: "", category_id: 59, created_at: "2019-06-11 22:10:17", updated_at: "2019-07-16 17:36:34", spin: "2", shortname: "THM", active: true, current: true, order: 19},
   {id: 10, name: "AC Motherboard", length: "", category_id: 47, created_at: "2019-06-11 21:28:32", updated_at: "2019-07-16 17:36:34", spin: "11", shortname: "AC", active: true, current: true, order: 10},
   {id: 11, name: "AC Motherboard", length: "", category_id: 47, created_at: "2019-06-11 21:44:03", updated_at: "2019-07-16 17:36:34", spin: "9", shortname: "AC", active: true, current: false, order: 10},
@@ -1566,7 +1569,7 @@ Order.create!([
   {id: 2, name: "Renesas Palm Bay Other", date: "2019-06-30", delivery: "", payment: "", warranty: "", category_id: 20, customer_id: 1, created_at: "2019-06-30 21:46:01", updated_at: "2019-06-30 21:46:01"},
   {id: 3, name: "Gareth Leak WS", date: "2019-07-11", delivery: "", payment: "", warranty: "", category_id: 17, customer_id: 1, created_at: "2019-07-11 22:30:32", updated_at: "2019-07-11 22:30:32"},
   {id: 4, name: "Sunshine Industries", date: "2019-07-11", delivery: "", payment: "", warranty: "", category_id: 19, customer_id: 1, created_at: "2019-07-11 22:56:25", updated_at: "2019-07-11 22:56:25"},
-  {id: 5, name: "Casio Calculators", date: "2019-07-11", delivery: "", payment: "", warranty: "", category_id: 18, customer_id: 1, created_at: "2019-07-11 22:57:09", updated_at: "2019-07-11 22:57:09"}
+  {id: 5, name: "Casio Calculator", date: "2019-07-11", delivery: "", payment: "", warranty: "", category_id: 18, customer_id: 1, created_at: "2019-07-11 22:57:09", updated_at: "2019-07-18 18:22:32"}
 ])
 AssemblyBom.create!([
   {id: 18, assembly_id: 10, part_id: 100003, count: 2, refdes: "C283 C285", created_at: "2019-06-11 21:41:03", updated_at: "2019-06-26 22:07:54"},
@@ -7005,7 +7008,9 @@ OrderBom.create!([
   {id: 20, product_id: 11, order_id: 5, count: 2, created_at: "2019-07-11 22:57:09", updated_at: "2019-07-11 22:57:09"},
   {id: 21, product_id: 7, order_id: 5, count: 1, created_at: "2019-07-11 22:57:09", updated_at: "2019-07-11 22:57:09"},
   {id: 22, product_id: 10, order_id: 5, count: 4, created_at: "2019-07-11 22:57:09", updated_at: "2019-07-11 22:57:09"},
-  {id: 23, product_id: 8, order_id: 5, count: 1, created_at: "2019-07-11 22:57:09", updated_at: "2019-07-11 22:57:09"}
+  {id: 23, product_id: 8, order_id: 5, count: 1, created_at: "2019-07-11 22:57:09", updated_at: "2019-07-11 22:57:09"},
+  {id: 24, product_id: 3, order_id: 7, count: 1, created_at: "2019-07-18 17:06:30", updated_at: "2019-07-18 17:06:30"},
+  {id: 25, product_id: 12, order_id: 7, count: 4, created_at: "2019-07-18 17:06:30", updated_at: "2019-07-18 17:06:30"}
 ])
 ProductBom.create!([
   {id: 9, assembly_id: 41, product_id: 3, count: 1, created_at: "2019-06-13 16:25:42", updated_at: "2019-06-26 22:08:13"},
