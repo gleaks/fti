@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :invoice]
   before_action :require_login
 
   # GET /orders
@@ -52,6 +52,9 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     redirect_to orders_url, notice: 'Order was successfully destroyed.'
+  end
+
+  def invoice
   end
 
   private
