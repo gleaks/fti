@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'customers/modal' => 'customers#modal', :as => :customer_modal
   get 'categories/modal' => 'categories#modal', :as => :category_modal
   get 'octopart/:id' => 'octopart#index', :as => :octopart
-  get 'invoices/:id' => 'orders#invoice', :as => :invoices
+  get 'invoices/:id' => 'orders#invoice', :as => :invoice
   resources :customers
   resources :orders
   resources :products
