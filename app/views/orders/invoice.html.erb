@@ -5,13 +5,12 @@
   <li class="breadcrumb-item"><%= link_to 'Orders', orders_path %></li>
   <li class="breadcrumb-item">Order #<%= @order.id %></li>
 </ol>
-
 <div class="container-fluid">
   <div id="ui-view">
     <div>
       <div class="card">
         <div class="card-header">Invoice
-          <strong>#90-98792</strong>
+          <strong>#<%= @order.id %></strong>
           <a class="btn btn-sm btn-secondary float-right mr-1 d-print-none" href="#">
             <i class="material-icons md-12">file_copy</i> Copy</a>
           <a class="btn btn-sm btn-success float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();">
@@ -31,7 +30,7 @@
             <div class="col-sm-3 invoice-head">
               <h6 class="mb-3">To:</h6>
               <div>
-                <strong>BootstrapMaster.com</strong>
+                <strong><%= @order.customer.name %></strong>
               </div>
               <div>Konopnickiej 42</div>
               <div>43-190 Mikolow, Poland</div>
@@ -49,9 +48,9 @@
             <div class="col-sm-3">
               <h6 class="mb-3">Details:</h6>
               <div>Invoice
-                <strong>#90-98792</strong>
+                <strong>#<%= @order.id %></strong>
               </div>
-              <div>Aug. 6th, 2019</div>
+              <div><%= @order.date.to_formatted_s(:long) %></div>
               <div>Ex works Boulder CO USA</div>
               <div><strong>Quote is Valid for 30 Days</strong></div>
               <div><strong>Warranty: 12 months parts and labor</strong></div>
@@ -62,7 +61,7 @@
               <thead>
                 <tr>
                   <th class="center">#</th>
-                  <th>Item</th>
+                  <th>Part #</th>
                   <th>Description</th>
                   <th class="center">Quantity</th>
                   <th class="right">Unit Cost</th>
@@ -70,47 +69,23 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td colspan="6" class="center">This is a test description at the top like what Peter would write with details about the tester, their test requirements, other stuff like that. It ususally takes up a decent block of space.</td>
-                </tr>
-                <tr>
-                  <td class="center">1</td>
-                  <td class="left">Origin License</td>
-                  <td class="left">Extended License</td>
-                  <td class="center">1</td>
-                  <td class="right">$999,00</td>
-                  <td class="right">$999,00</td>
-                </tr>
-                <tr>
-                  <td class="center">2</td>
-                  <td class="left">Custom Services</td>
-                  <td class="left">Instalation and Customization (cost per hour)</td>
-                  <td class="center">20</td>
-                  <td class="right">$150,00</td>
-                  <td class="right">$3.000,00</td>
-                </tr>
-                <tr>
-                  <td class="center">3</td>
-                  <td class="left">Hosting</td>
-                  <td class="left">1 year subcription</td>
-                  <td class="center">1</td>
-                  <td class="right">$499,00</td>
-                  <td class="right">$499,00</td>
-                </tr>
-                <tr>
-                  <td class="center">4</td>
-                  <td class="left">Platinum Support</td>
-                  <td class="left">1 year subcription 24/7</td>
-                  <td class="center">1</td>
-                  <td class="right">$3.999,00</td>
-                  <td class="right">$3.999,00</td>
-                </tr>
+                <% @order.order_boms.each do |bom| %>
+                  <tr>
+                    <td class="center">1</td>
+                    <td class="left"><%= bom.product.id %></td>
+                    <td class="left"><%= bom.product.name %></td>
+                    <td class="center"><%= bom.count %></td>
+                    <td class="right"><%= number_to_currency(bom.product.price) %></td>
+                    <td class="right"><%= number_to_currency(bom.extendedprice) %></td>
+                  </tr>
+                <% end %>
               </tbody>
             </table>
           </div>
           <div class="row">
-            <div class="col-lg-4 col-sm-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+            <div class="col-lg-4 col-sm-5">System for testing SIDACtor and TVS devices. Tests include
+              Vdrm, Vz, Ir, Ih and Vf. Surge current to 2kW power with
+              waveforms including 10/1000 and 8/20.</div>
             <div class="col-lg-4 col-sm-5 ml-auto">
               <table class="table table-clear">
                 <tbody>
@@ -118,26 +93,20 @@
                     <td class="left">
                       <strong>Subtotal</strong>
                     </td>
-                    <td class="right">$8.497,00</td>
+                    <td class="right"><%= number_to_currency(@order.subtotal) %></td>
                   </tr>
                   <tr>
                     <td class="left">
                       <strong>Discount (20%)</strong>
                     </td>
-                    <td class="right">$1,699,40</td>
-                  </tr>
-                  <tr>
-                    <td class="left">
-                      <strong>VAT (10%)</strong>
-                    </td>
-                    <td class="right">$679,76</td>
+                    <td class="right"><%= number_to_currency(@order.discount) %></td>
                   </tr>
                   <tr>
                     <td class="left">
                       <strong>Total</strong>
                     </td>
                     <td class="right">
-                      <strong>$7.477,36</strong>
+                      <strong><%= number_to_currency(@order.total) %></strong>
                     </td>
                   </tr>
                 </tbody>

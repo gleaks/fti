@@ -7,4 +7,20 @@ class Order < ApplicationRecord
   accepts_nested_attributes_for :order_boms, reject_if: :all_blank, allow_destroy: true
 
   has_many :modulelogs
+
+  def subtotal
+    a = 0
+    order_boms.each do |bom|
+      a += bom.extendedprice
+    end
+    return a
+  end
+
+  def discount
+    subtotal * 0.2
+  end
+
+  def total
+    subtotal - discount
+  end
 end
