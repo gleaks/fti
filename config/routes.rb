@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'categories/modal' => 'categories#modal', :as => :category_modal
   get 'octopart/:id' => 'octopart#index', :as => :octopart
   get 'invoices/:id' => 'orders#invoice', :as => :invoice
+  get 'workorders/:id' => 'orders#workorder', :as => :workorder
   resources :customers
   resources :orders
   resources :products

@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy, :invoice]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :invoice, :workorder]
   before_action :require_login
 
   # GET /orders
@@ -55,6 +55,9 @@ class OrdersController < ApplicationController
   end
 
   def invoice
+  end
+
+  def workorder
   end
 
   private

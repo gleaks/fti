@@ -40,10 +40,15 @@ class ModulelogsController < ApplicationController
 
   # PATCH/PUT /modulelogs/1
   def update
-    if @modulelog.update(modulelog_params)
-      redirect_to @modulelog, notice: 'Modulelog was successfully updated.'
-    else
-      render :edit
+    location = params['modulelog']['location']
+    respond_to do |format|
+      if @modulelog.update(modulelog_params)
+        format.html { redirect_to @modulelog, notice: 'Modulelog was successfully updated.' }
+        format.js {render js: "$('##{location}').text('Updated: just now');"}
+      else
+        format.html { render :edit }
+        format.js { puts "ERROR!!" }
+      end
     end
   end
 

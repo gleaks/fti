@@ -19,4 +19,10 @@ $(document).on 'turbolinks:load', ->
     $('.s2').select2
       theme: 'bootstrap'
     return
+
+  $('select[name="modulelog[modulelog_id]"]').on 'change', (event) ->
+    id = $(this).select2('data')
+    $(@form).attr('action', '/modulelogs/' + id[0].id.toString())
+    $(@form).submit()
+    return
   return

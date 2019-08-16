@@ -15,13 +15,13 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @categories = Category.where(table: 'products')
-    @assemblies = Assembly.all
+    @assemblies = Assembly.where(current: true).order(name: :asc)
   end
 
   # GET /products/1/edit
   def edit
     @categories = Category.where(table: 'products')
-    @assemblies = Assembly.all
+    @assemblies = Assembly.where(current: true).order(name: :asc)
   end
 
   # POST /products
