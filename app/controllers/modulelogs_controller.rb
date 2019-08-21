@@ -1,3 +1,4 @@
+include ActionView::Helpers::DateHelper
 class ModulelogsController < ApplicationController
   before_action :set_modulelog, only: [:show, :edit, :update, :destroy]
 
@@ -43,11 +44,23 @@ class ModulelogsController < ApplicationController
     location = params['modulelog']['location']
     respond_to do |format|
       if @modulelog.update(modulelog_params)
+        unless params['modulelog']['old_module'].nil?
+          om_id = params['modulelog']['old_module']
+          old_module = Modulelog.find(om_id)
+          old_module.update_columns(:location => '', :order_id => '')
+        end
         format.html { redirect_to @modulelog, notice: 'Modulelog was successfully updated.' }
-        format.js {render js: "$('##{location}').text('Updated: just now');"}
+        format.js {render js: "$('#update-#{location}').text('Updated: #{time_ago_in_words(@modulelog.updated_at)} ago by #{@modulelog.user.username}');
+                              $('#progress-#{location}').html('<div class=\"mb-3 progress\"><div class=\"progress-bar\" role=\"progressbar\" style=\"width: #{@modulelog.progress.to_s}%\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"#{@modulelog.progress.to_s}\">#{@modulelog.progress.to_s}%</div></div>');
+                              $('#detail-#{location}').html('Currently assigned to #{@modulelog.assembly.shortname} <strong><a href=\"/modulelogs/#{@modulelog.id}\">#{@modulelog.serial}</a></strong> <span class=\"badge #{@modulelog.category.color}\">#{@modulelog.category.name}</span>');
+                              if ($('#form-#{location} > #modulelog_old_module').length) {
+                                $('#form-#{location} > #modulelog_old_module').val('#{@modulelog.id}');
+                              } else {
+                                $('#form-#{location} > #modulelog_order_id').after('<input value=\"#{@modulelog.id}\" type=\"hidden\" name=\"modulelog[old_module]\" id=\"modulelog_old_module\">');
+                              };"}
       else
         format.html { render :edit }
-        format.js { puts "ERROR!!" }
+        format.js { render js: "console.log('#{Rails.logger.info(@modulelog.errors.messages.inspect)}');" }
       end
     end
   end
@@ -66,6 +79,6 @@ class ModulelogsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def modulelog_params
-      params.require(:modulelog).permit(:serial, :version, :order_id, :date, :category_id, :assembly_id, :notes)
+      params.require(:modulelog).permit(:serial, :version, :order_id, :date, :category_id, :assembly_id, :notes, :location, :progress, :user_id)
     end
 end

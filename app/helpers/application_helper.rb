@@ -12,6 +12,12 @@ module ApplicationHelper
     flash_messages.join("\n").html_safe
   end
 
+  def current_user
+    if session[:user_id]
+      @current_user ||= User.find_by(id: session[:user_id])
+    end
+  end
+
   def multiply(a, b)
     a * b
   end

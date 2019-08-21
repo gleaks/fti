@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_18_225907) do
+ActiveRecord::Schema.define(version: 2019_08_19_220517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,9 +75,13 @@ ActiveRecord::Schema.define(version: 2019_07_18_225907) do
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "location"
+    t.integer "progress"
+    t.bigint "user_id"
     t.index ["assembly_id"], name: "index_modulelogs_on_assembly_id"
     t.index ["category_id"], name: "index_modulelogs_on_category_id"
     t.index ["order_id"], name: "index_modulelogs_on_order_id"
+    t.index ["user_id"], name: "index_modulelogs_on_user_id"
   end
 
   create_table "order_boms", force: :cascade do |t|
@@ -173,6 +177,7 @@ ActiveRecord::Schema.define(version: 2019_07_18_225907) do
   add_foreign_key "modulelogs", "assemblies"
   add_foreign_key "modulelogs", "categories"
   add_foreign_key "modulelogs", "orders"
+  add_foreign_key "modulelogs", "users"
   add_foreign_key "stocks", "locations"
   add_foreign_key "stocks", "parts"
   add_foreign_key "vendorparts", "parts"
