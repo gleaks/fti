@@ -10,11 +10,24 @@
     <div>
       <div class="card">
         <div class="card-header">
-          Work Order #<%= @order.id %> - <strong><%= @order.name %></strong>
-          <a class="btn btn-sm btn-success float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();">
-            <i class="material-icons md-12">print</i> Print</a>
-          <a class="btn btn-sm btn-info float-right mr-1 d-print-none" href="#">
-            <i class="material-icons md-12">picture_as_pdf</i> Export to PDF</a>
+          <div class="row">
+            <div class="col-sm-4">
+              Work Order #<%= @order.id %> - <strong><%= @order.name %></strong>
+            </div>
+            <div class="col-sm-5">
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: <%= @order.progress %>%" aria-valuemin="0" aria-valuemax="100" aria-valuenow="<%= @order.progress %>">
+                  <%= @order.progress %>%
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <a class="btn btn-sm btn-success float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();">
+                <i class="material-icons md-12">print</i> Print</a>
+              <a class="btn btn-sm btn-info float-right mr-1 d-print-none" href="#">
+                <i class="material-icons md-12">picture_as_pdf</i> Export to PDF</a>
+            </div>
+          </div>
         </div>
         <div class="card-body">
           <ul class="list-group">
@@ -31,7 +44,7 @@
                           <% if assigned.count == 0 %>
                             Never
                           <% else %>
-                            <%= time_ago_in_words(assigned.first.updated_at) %> ago by <%= assigned.first.user.username %>
+                            <%= time_ago_in_words(assigned.first.updated_at) %> ago by <span class="badge badge-pill badge-<%= assigned.first.user.color %>"><%= assigned.first.user.username %></span>
                           <% end %>
                         </small>
                       </div>
@@ -69,46 +82,47 @@
                               <div class="dropdown-menu">
                                 <%= form_with(model: Modulelog.first, class: 'px-2 py-2', id: 'pform-' + location) do |form| %>
                                   <%= form.hidden_field :location, :value => location %>
+                                  <%= form.hidden_field :user_id, :value => current_user.id %>
                                   <% if assigned.count > 0 %>
                                     <%= form.hidden_field :id, :value => assigned.first.id %>
                                     <%= form.hidden_field :progress, :value => assigned.first.progress %>
                                     <div class="form-group">
                                       <input type="text" class="form-control js-range-slider" name="my_range" value="" data-from="<%= assigned.first.progress %>" />
-                                    </div>
-                                  <% else %>
-                                    <%= form.hidden_field :id, :value => '0' %>
-                                    <%= form.hidden_field :progress, :value => '0' %>
-                                    <div class="form-group">
-                                      <input type="text" class="form-control js-range-slider" name="my_range" value="" data-from="0" />
-                                    </div>
-                                  <% end %>
-                                <% end %>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-9">
-                          <strong>Notes</strong> <i class="material-icons md-18 align-bottom">chevron_right</i> <small>(<a href="#">Show all notes...</a>)</small>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-9">
-                          <span class="badge badge-pill badge-red">@gareth</span> Epoxied corner damage from vendor. Had to rework from 8.99 to spin9.
-                        </div>
-                        <div class="col-sm-3">
-                          <small class="float-right">18 minutes ago</small>
-                        </div>
-                      </div>
-                    </li>
-                  <% end %>
-                <% end %>
-              <% end %>
+              </div>
+            <% else %>
+              <%= form.hidden_field :id, :value => '0' %>
+              <%= form.hidden_field :progress, :value => '0' %>
+              <div class="form-group">
+                <input type="text" class="form-control js-range-slider" name="my_range" value="" data-from="0" />
+              </div>
             <% end %>
-          </ul>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
+</div>
+<div class="row">
+  <div class="col-sm-9">
+    <strong>Notes</strong> <i class="material-icons md-18 align-bottom">chevron_right</i> <small>(<a href="#">Show all notes...</a>)</small>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-9">
+    <span class="badge badge-pill badge-lightgreen">@gareth</span> Epoxied corner damage from vendor. Had to rework from 8.99 to spin9.
+  </div>
+  <div class="col-sm-3">
+    <small class="float-right">18 minutes ago</small>
+  </div>
+</div>
+</li>
+<% end %>
+<% end %>
+<% end %>
+<% end %>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </div>

@@ -23,4 +23,8 @@ class Order < ApplicationRecord
   def total
     subtotal - discount
   end
+
+  def progress
+    modulelogs.sum(:progress) / modulelogs.count
+  end
 end

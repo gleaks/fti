@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div id="ui-view">
         <div>
-            
+
             <div class="animated fadeIn">
                 <div class="card">
                     <div class="card-header">
@@ -60,7 +60,7 @@
                               <td><%= modulelog.assembly.fullname %></td>
                               <td><%= modulelog.version %></td>
                               <td><%= modulelog.date %></td>
-                              <td><span class="badge <%= color_to_class(modulelog.category.color) %>"><%= modulelog.category.name %></span></td>
+                              <td><span class="badge <%= modulelog.category.color %>"><%= modulelog.category.name %></span></td>
                               <td><%= link_to 'Edit', edit_modulelog_path(modulelog) %> | <%= link_to 'Destroy', modulelog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                             </tr>
                           <% end %>
