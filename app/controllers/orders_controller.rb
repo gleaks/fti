@@ -5,6 +5,7 @@ class OrdersController < ApplicationController
   # GET /orders
   def index
     @orders = Order.all
+    @type = params[:type]
   end
 
   # GET /orders/1

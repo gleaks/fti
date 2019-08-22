@@ -2,7 +2,7 @@
   <li class="breadcrumb-item">
     <a href="/">Home</a>
   </li>
-  <li class="breadcrumb-item"><%= link_to 'Orders', orders_path %></li>
+  <li class="breadcrumb-item"><%= link_to 'Work Orders', orders_path(:type => 'work_order') %></li>
   <li class="breadcrumb-item">Order #<%= @order.id %></li>
 </ol>
 <div class="container-fluid">
@@ -44,7 +44,7 @@
                           </div>
                         <% end %>
                       </div>
-                      <div class="row mb-2">
+                      <div class="row mb-1">
                         <div class="col-sm-7">
                           <div id="detail-<%= location %>" class="float-left">
                             <% if assigned.count == 0 %>
@@ -95,7 +95,7 @@
                       </div>
                       <div class="row">
                         <div class="col-sm-9">
-                          <span class="badge badge-red">@gareth</span> Epoxied corner damage from vendor. Had to rework from 8.99 to spin9.
+                          <span class="badge badge-pill badge-red">@gareth</span> Epoxied corner damage from vendor. Had to rework from 8.99 to spin9.
                         </div>
                         <div class="col-sm-3">
                           <small class="float-right">18 minutes ago</small>

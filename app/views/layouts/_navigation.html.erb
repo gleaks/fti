@@ -8,8 +8,8 @@
       </li>
       <li class="nav-title">CRM</li>
       <li class="nav-item">
-        <%= link_to(orders_path, class: 'nav-link') do %>
-          <i class="nav-icon material-icons">assignment</i> Orders
+        <%= link_to(orders_path(:type => 'quote'), class: 'nav-link') do %>
+          <i class="nav-icon material-icons">ballot</i> Quotes
         <% end %>
       </li>
       <li class="nav-item">
@@ -22,36 +22,25 @@
           <i class="nav-icon material-icons">devices_other</i> Products
         <% end %>
       </li>
-      <li class="nav-title">Inventory</li>
-      <li class="nav-item">
-        <%= link_to(parts_path, class: 'nav-link') do %>
-          <i class="nav-icon material-icons">memory</i> Parts
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to(stocks_path, class: 'nav-link') do %>
-          <i class="nav-icon material-icons">speaker_group</i> Stock
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to(vendors_path, class: 'nav-link') do %>
-          <i class="nav-icon material-icons">store_mall_directory</i> Vendors
-        <% end %>
-      </li>
       <li class="nav-title">Manufacturing</li>
+      <li class="nav-item">
+        <%= link_to(orders_path(:type => 'work_order'), class: 'nav-link') do %>
+          <i class="nav-icon material-icons">assignment</i> Work Orders
+        <% end %>
+      </li>
       <li class="nav-item">
         <%= link_to(modulelogs_path, class: 'nav-link') do %>
           <i class="nav-icon material-icons">list</i> Module Log
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to(modulelogs_path, class: 'nav-link') do %>
-          <i class="nav-icon material-icons">list</i> System Log
+        <%= link_to(assemblies_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">developer_board</i> Assemblies
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to(assemblies_path, class: 'nav-link') do %>
-          <i class="nav-icon material-icons">developer_board</i> Assemblies
+        <%= link_to(parts_path, class: 'nav-link') do %>
+          <i class="nav-icon material-icons">memory</i> Parts
         <% end %>
       </li>
       <li class="nav-title">Reports</li>

@@ -2,8 +2,8 @@
   <li class="breadcrumb-item">
     <a href="/">Home</a>
   </li>
-  <li class="breadcrumb-item"><%= link_to 'Orders', orders_path %></li>
-  <li class="breadcrumb-item">Order #<%= @order.id %></li>
+  <li class="breadcrumb-item"><%= link_to 'Quotes', orders_path(:type => 'quote') %></li>
+  <li class="breadcrumb-item">Quote #<%= @order.id %></li>
 </ol>
 <div class="container-fluid">
   <div id="ui-view">

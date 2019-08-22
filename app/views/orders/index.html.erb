@@ -2,7 +2,7 @@
     <li class="breadcrumb-item">
         <a href="/">Home</a>
     </li>
-    <li class="breadcrumb-item">Orders</li>
+    <li class="breadcrumb-item"><%= @type.titleize %>s</li>
 </ol>
 
 <div class="container-fluid">
@@ -12,12 +12,14 @@
             <div class="animated fadeIn">
                 <div class="card">
                     <div class="card-header">
-                        Order List
-                        <div class="card-header-actions">
-                          <%= link_to new_order_path, class: 'card-header-action' do %>
-                            Create New Order
-                          <% end %>
-                        </div>
+                        <%= @type.titleize %> List
+                        <% if @type == 'quote' %>
+                          <div class="card-header-actions">
+                            <%= link_to new_order_path, class: 'card-header-action' do %>
+                              Create New Quote
+                            <% end %>
+                          </div>
+                        <% end %>
                     </div>
                     <div class="card-body">
                         <table id="orders-table" class="table table-responsive-sm table-bordered table-striped table-sm">
@@ -38,8 +40,10 @@
                             <% @orders.each do |order| %>
                               <tr>
                                 <td>
-                                    <%= link_to order do %>
-                                        <%= order.name %>
+                                    <% if @type == 'quote' %>
+                                      <%= link_to order.name, invoice_path(order) %>
+                                    <% elsif @type == 'work_order' %>
+                                      <%= link_to order.name, workorder_path(order) %>
                                     <% end %>
                                 </td>
                                 <td><%= order.date %></td>
