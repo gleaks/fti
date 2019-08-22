@@ -25,4 +25,16 @@ $(document).on 'turbolinks:load', ->
     $(@form).attr('action', '/modulelogs/' + id[0].id.toString())
     $(@form).submit()
     return
+
+  $('.js-range-slider').ionRangeSlider
+    min: 0
+    max: 100
+    onFinish: (data) ->
+      form = $(data.input[0].form)
+      id = form.children('#modulelog_id').val()
+      form.children('#modulelog_progress').val(data.from)
+      form.attr('action', '/modulelogs/' + id)
+      form.submit()
+      return
+
   return

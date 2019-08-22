@@ -13,6 +13,10 @@ $color-4: rgba(255, 255, 255, 0.3);
 	font-size: 12px;
 }
 
+.material-icons.md-14, .material-icons-outlined.md-14 {
+	font-size: 14px;
+}
+
 .material-icons.md-18, .material-icons-outlined.md-18 {
 	font-size: 18px;
 }
@@ -83,4 +87,9 @@ $color-4: rgba(255, 255, 255, 0.3);
 
 .invoice-head {
 	border-right: 1px solid #80808038;
+}
+
+.badge-red {
+	color: #fff;
+	background-color: #f86c6b;
 }

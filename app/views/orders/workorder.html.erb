@@ -9,8 +9,8 @@
   <div id="ui-view">
     <div>
       <div class="card">
-        <div class="card-header">Order
-          #<%= @order.id %> - <strong><%= @order.name %></strong>
+        <div class="card-header">
+          Work Order #<%= @order.id %> - <strong><%= @order.name %></strong>
           <a class="btn btn-sm btn-success float-right mr-1 d-print-none" href="#" onclick="javascript:window.print();">
             <i class="material-icons md-12">print</i> Print</a>
           <a class="btn btn-sm btn-info float-right mr-1 d-print-none" href="#">
@@ -44,26 +44,61 @@
                           </div>
                         <% end %>
                       </div>
-                      <div>
-                        <div id="detail-<%= location %>" class="float-left">
-                          <% if assigned.count == 0 %>
-                            Currently <strong><mark>unassigned</mark></strong>
-                          <% else %>
-                            Currently assigned to <%= a.assembly.shortname %> <strong><%= link_to assigned.first.serial, modulelog_path(assigned.first.id) %></strong> <span class="badge <%= color_to_class(assigned.first.category.color) %>"><%= assigned.first.category.name %></span>
-                            <br />
-                            <%= assigned.to_ary %>
-                          <% end %>
+                      <div class="row mb-2">
+                        <div class="col-sm-7">
+                          <div id="detail-<%= location %>" class="float-left">
+                            <% if assigned.count == 0 %>
+                              Currently <strong><mark>unassigned</mark></strong>
+                            <% else %>
+                              Currently assigned to <%= a.assembly.shortname %> <strong><%= link_to assigned.first.serial, modulelog_path(assigned.first.id) %></strong> <span class="badge <%= assigned.first.category.color %>"><%= assigned.first.category.name %></span>
+                            <% end %>
+                          </div>
                         </div>
-                        <div class="float-right btn-group btn-group-sm" role="group">
-                          <%= form_with(model: Modulelog.first, id: 'form-' + location) do |form| %>
-                            <%= form.hidden_field :user_id, :value => current_user.id %>
-                            <%= form.hidden_field :order_id, :value => @order.id %>
-                            <%= form.hidden_field :old_module, :value => assigned.first.id if assigned.count > 0 %>
-                            <%= form.hidden_field :location, :value => location %>
-                            <%= form.hidden_field :progress, :value => '58' %>
-                            <%= form.collection_select :modulelog_id, a.assembly.modulelogs.where(assembly_id: a.assembly.id).order(serial: :desc), :id, :name, {:include_blank=>'Assignment'}, {:class=>'form-control s2'} %>
-                          <% end %>
-                          <button class="btn btn-secondary" type="button">Progress</button>
+                        <div class="col-sm-5">
+                          <div class="float-right btn-group btn-group-sm" role="group">
+
+                            <%= form_with(model: Modulelog.first, id: 'aform-' + location) do |form| %>
+                              <%= form.hidden_field :user_id, :value => current_user.id %>
+                              <%= form.hidden_field :order_id, :value => @order.id %>
+                              <%= form.hidden_field :old_module, :value => assigned.first.id if assigned.count > 0 %>
+                              <%= form.hidden_field :location, :value => location %>
+                              <%= form.collection_select :modulelog_id, a.assembly.modulelogs.where(assembly_id: a.assembly.id).order(serial: :desc), :id, :name, {:include_blank=>'Assignment'}, {:class=>'form-control s2'} %>
+                            <% end %>
+                            <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" id="pbutton-<%= location %>" data-toggle="dropdown" type="button" <%= 'disabled' if assigned.count == 0 %>>Progress</button>
+                              <div class="dropdown-menu">
+                                <%= form_with(model: Modulelog.first, class: 'px-2 py-2', id: 'pform-' + location) do |form| %>
+                                  <%= form.hidden_field :location, :value => location %>
+                                  <% if assigned.count > 0 %>
+                                    <%= form.hidden_field :id, :value => assigned.first.id %>
+                                    <%= form.hidden_field :progress, :value => assigned.first.progress %>
+                                    <div class="form-group">
+                                      <input type="text" class="form-control js-range-slider" name="my_range" value="" data-from="<%= assigned.first.progress %>" />
+                                    </div>
+                                  <% else %>
+                                    <%= form.hidden_field :id, :value => '0' %>
+                                    <%= form.hidden_field :progress, :value => '0' %>
+                                    <div class="form-group">
+                                      <input type="text" class="form-control js-range-slider" name="my_range" value="" data-from="0" />
+                                    </div>
+                                  <% end %>
+                                <% end %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-9">
+                          <strong>Notes</strong> <i class="material-icons md-18 align-bottom">chevron_right</i> <small>(<a href="#">Show all notes...</a>)</small>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-9">
+                          <span class="badge badge-red">@gareth</span> Epoxied corner damage from vendor. Had to rework from 8.99 to spin9.
+                        </div>
+                        <div class="col-sm-3">
+                          <small class="float-right">18 minutes ago</small>
                         </div>
                       </div>
                     </li>

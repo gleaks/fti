@@ -50,14 +50,23 @@ class ModulelogsController < ApplicationController
           old_module.update_columns(:location => '', :order_id => '')
         end
         format.html { redirect_to @modulelog, notice: 'Modulelog was successfully updated.' }
-        format.js {render js: "$('#update-#{location}').text('Updated: #{time_ago_in_words(@modulelog.updated_at)} ago by #{@modulelog.user.username}');
-                              $('#progress-#{location}').html('<div class=\"mb-3 progress\"><div class=\"progress-bar\" role=\"progressbar\" style=\"width: #{@modulelog.progress.to_s}%\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"#{@modulelog.progress.to_s}\">#{@modulelog.progress.to_s}%</div></div>');
-                              $('#detail-#{location}').html('Currently assigned to #{@modulelog.assembly.shortname} <strong><a href=\"/modulelogs/#{@modulelog.id}\">#{@modulelog.serial}</a></strong> <span class=\"badge #{@modulelog.category.color}\">#{@modulelog.category.name}</span>');
-                              if ($('#form-#{location} > #modulelog_old_module').length) {
-                                $('#form-#{location} > #modulelog_old_module').val('#{@modulelog.id}');
-                              } else {
-                                $('#form-#{location} > #modulelog_order_id').after('<input value=\"#{@modulelog.id}\" type=\"hidden\" name=\"modulelog[old_module]\" id=\"modulelog_old_module\">');
-                              };"}
+        if params['modulelog']['progress'].nil?
+          format.js {render js: "$('#update-#{location}').text('Updated: #{time_ago_in_words(@modulelog.updated_at)} ago by #{@modulelog.user.username}');
+                                $('#progress-#{location}').html('<div class=\"mb-3 progress\"><div class=\"progress-bar\" role=\"progressbar\" style=\"width: #{@modulelog.progress.to_s}%\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"#{@modulelog.progress.to_s}\">#{@modulelog.progress.to_s}%</div></div>');
+                                $('#detail-#{location}').html('Currently assigned to #{@modulelog.assembly.shortname} <strong><a href=\"/modulelogs/#{@modulelog.id}\">#{@modulelog.serial}</a></strong> <span class=\"badge #{@modulelog.category.color}\">#{@modulelog.category.name}</span>');
+                                if ($('#aform-#{location} > #modulelog_old_module').length) {
+                                  $('#aform-#{location} > #modulelog_old_module').val('#{@modulelog.id}');
+                                } else {
+                                  $('#aform-#{location} > #modulelog_order_id').after('<input value=\"#{@modulelog.id}\" type=\"hidden\" name=\"modulelog[old_module]\" id=\"modulelog_old_module\">');
+                                };
+                                $('#pform-#{location} > #modulelog_id').val('#{@modulelog.id}');
+                                $('#pform-#{location} .js-range-slider').data('ionRangeSlider').update({from: #{@modulelog.progress}});
+                                $('#pform-#{location} > #modulelog_progress').val('#{@modulelog.progress}');
+                                $('#pbutton-#{location}').prop('disabled', false);"}
+        else
+          format.js {render js: "$('#update-#{location}').text('Updated: #{time_ago_in_words(@modulelog.updated_at)} ago by #{@modulelog.user.username}');
+                                $('#progress-#{location}').html('<div class=\"mb-3 progress\"><div class=\"progress-bar\" role=\"progressbar\" style=\"width: #{@modulelog.progress.to_s}%\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"#{@modulelog.progress.to_s}\">#{@modulelog.progress.to_s}%</div></div>');"}
+        end
       else
         format.html { render :edit }
         format.js { render js: "console.log('#{Rails.logger.info(@modulelog.errors.messages.inspect)}');" }
