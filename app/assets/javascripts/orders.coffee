@@ -27,6 +27,13 @@ $(document).on 'turbolinks:load', ->
     $(@form).submit()
     return
 
+  $('.submit-btn').on 'click', (event) ->
+    event.preventDefault()
+    id = $(@form).find('#modulelog_id').val()
+    $(@form).attr('action', '/modulelogs/' + id.toString())
+    $(@form).submit()
+    return
+
   $('.js-range-slider').ionRangeSlider
     min: 0
     max: 100

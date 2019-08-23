@@ -25,6 +25,10 @@ class Order < ApplicationRecord
   end
 
   def progress
-    modulelogs.sum(:progress) / modulelogs.count
+    if modulelogs.count > 0
+      modulelogs.sum(:progress) / modulelogs.count
+    else
+      '0'
+    end
   end
 end

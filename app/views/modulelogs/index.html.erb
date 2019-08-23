@@ -1,76 +1,79 @@
 <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <a href="/">Home</a>
-    </li>
-    <li class="breadcrumb-item">Module Log</li>
+  <li class="breadcrumb-item">
+    <a href="/">Home</a>
+  </li>
+  <li class="breadcrumb-item">Module Log</li>
 </ol>
 
 <div class="container-fluid">
-    <div id="ui-view">
-        <div>
+  <div id="ui-view">
+    <div>
 
-            <div class="animated fadeIn">
-                <div class="card">
-                    <div class="card-header">
-                        Module Log
-                        <div class="card-header-actions">
-                          <%= link_to new_modulelog_path, class: 'card-header-action' do %>
-                            Create New Module
-                          <% end %>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                      <div class="toolbar">
-                        <ul class="nav nav-pills">
-                          <li class="nav-item">
-                            <a class="nav-link active toggle-assembly" data-order="_all" href="#">ALL</a>
-                          </li>
-                          <% @assemblies.each do |assembly| %>
-                            <li class="nav-item">
-                              <a href="#" data-order="<%= assembly.name %>" class="toggle-assembly nav-link"><%= assembly.shortname %></a>
-                            </li>
-                          <% end %>
-                        </ul>
-                        <div class="btn-group" role="group">
-                          <% @categories.each do |category| %>
-                            <button type="button" class="btn btn-secondary toggle-category" cat-order="<%= category.name %>"><%= category.name %></button>
-                          <% end %>
-                        </div>
-                      </div>
-                      <table id="modulelogs-table" class="table table-responsive-sm table-bordered table-striped table-sm">
-                        <thead>
-                          <tr>
-                            <th>S/N</th>
-                            <th>Module</th>
-                            <th>Version</th>
-                            <th>Date</th>
-                            <th>Category</th>
-                            <th></th>
-                          </tr>
-                        </thead>
-
-                        <tbody>
-                          <% @modulelogs.each do |modulelog| %>
-                            <tr>
-                              <td>
-                                  <%= link_to modulelog do %>
-                                      <%= modulelog.serial %>
-                                  <% end %>
-                              </td>
-                              <td><%= modulelog.assembly.fullname %></td>
-                              <td><%= modulelog.version %></td>
-                              <td><%= modulelog.date %></td>
-                              <td><span class="badge <%= modulelog.category.color %>"><%= modulelog.category.name %></span></td>
-                              <td><%= link_to 'Edit', edit_modulelog_path(modulelog) %> | <%= link_to 'Destroy', modulelog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                            </tr>
-                          <% end %>
-                        </tbody>
-                      </table>
-                    </div>
-                </div>
-            </div>
+      <div class="animated fadeIn">
+        <div class="card">
+          <div class="card-header">
+            Module Log
+            <div class="card-header-actions">
+              <%= link_to new_modulelog_path, class: 'card-header-action' do %>
+              Create New Module
+            <% end %>
+          </div>
         </div>
+        <div class="card-body">
+          <div class="toolbar">
+            <ul class="nav nav-pills">
+              <li class="nav-item">
+                <a class="nav-link active toggle-assembly" data-order="_all" href="#">ALL</a>
+              </li>
+              <% @assemblies.each do |assembly| %>
+                <li class="nav-item">
+                  <a href="#" data-order="<%= assembly.name %>" class="toggle-assembly nav-link"><%= assembly.shortname %></a>
+                </li>
+              <% end %>
+            </ul>
+            <div class="btn-group" role="group">
+              <% @categories.each do |category| %>
+                <button type="button" class="btn btn-secondary toggle-category" cat-order="<%= category.name %>"><%= category.name %></button>
+              <% end %>
+            </div>
+          </div>
+          <table id="modulelogs-table" class="table table-responsive-sm table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th>S/N</th>
+                <th>Module</th>
+                <th>Version</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @modulelogs.each do |modulelog| %>
+                <tr>
+                  <td>
+                    <%= link_to modulelog do %>
+                    <%= modulelog.serial %>
+                  <% end %>
+                </td>
+                <td><%= modulelog.assembly.fullname %></td>
+                <td><%= modulelog.version %></td>
+                <td><%= modulelog.date %></td>
+                <td>
+                  <span class="badge <%= modulelog.category.color %>"><%= modulelog.category.name %></span></td>
+                <td><%= link_to 'Edit', edit_modulelog_path(modulelog) %>
+                  |
+                  <%= link_to 'Destroy', modulelog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
+</div>
+</div>
 </div>
 
 <br>

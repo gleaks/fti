@@ -17,6 +17,10 @@ $color-4: rgba(255, 255, 255, 0.3);
 	font-size: 14px;
 }
 
+.material-icons.md-16, .material-icons-outlined.md-16 {
+	font-size: 16px;
+}
+
 .material-icons.md-18, .material-icons-outlined.md-18 {
 	font-size: 18px;
 }
@@ -96,4 +100,20 @@ $color-4: rgba(255, 255, 255, 0.3);
 .badge-purple {
 	color: #fff;
 	background-color: #420943;
+}
+.badge-pink {
+	color: #fff;
+	background-color: #F23A65;
+}
+.badge-yellow {
+	color: #000;
+	background-color: #FBB829;
+}
+.badge-red {
+	color: #000;
+	background-color: #FF9999;
+}
+.badge-blue {
+	color: #fff;
+	background-color: #025D8C;
 }
