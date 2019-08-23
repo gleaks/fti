@@ -1,12 +1,9 @@
 class Modulelog < ApplicationRecord
   acts_as_commentable
-  belongs_to :order
+  belongs_to :order, optional: true
   belongs_to :category
   belongs_to :assembly
-  belongs_to :user
-
-  validates :user_id, :presence => true, :on => :update
-  validates :order_id, :presence => true, :on => :update
+  belongs_to :user, optional: true
 
   def name
     serial.to_s + ' - ' + category.name
