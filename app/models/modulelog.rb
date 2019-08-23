@@ -5,6 +5,9 @@ class Modulelog < ApplicationRecord
   belongs_to :assembly
   belongs_to :user
 
+  validates :user_id, :presence => true, :on => :update
+  validates :order_id, :presence => true, :on => :update
+
   def name
     serial.to_s + ' - ' + category.name
   end
